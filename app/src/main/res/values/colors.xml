@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#f5cbd8</color>
+    <color name="colorPrimaryDark">#F2F4F3</color>
+    <color name="colorAccent">#F3B9CB</color>
+    <color name="colorMainBack">#F2F4F3</color>
+
+    <color name="colorNavBG">#0E1130</color>
+
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorGray">#666666</color>
+    <color name="colorRed">#FF0000</color>
+    <color name="colorBlue">#0027FF</color>
+    <color name="colorGreen">#6ebc4b</color>
+    <color name="colorSkyBlue">#87ceeb</color>
+
+    <color name="colorInstagram">#ec704e</color>
+
+    <color name="Transparent">#00000000</color>
+
+    <color name="ActiveText">#222222</color>
+    <color name="inActiveText">#888888</color>
+    <color name="inActiveBtn">#EEEEEE</color>
+    <color name="btnActive">#f5c922</color>
+
+    <color name="colorGrayLine">#dbdbdb</color>
 </resources>

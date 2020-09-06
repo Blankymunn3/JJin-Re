@@ -1,3 +1,77 @@
-<resources>
-    <string name="app_name">JJi-Re</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Main -->
+    <string name="app_name">찐리 - 진짜리뷰들</string>
+    <string name="str_submit">확인</string>
+
+    <!-- Sign Up -->
+    <string name="str_sign_up_title">회원가입</string>
+
+    <string name="str_sign_up_next">다음</string>
+    <string name="str_sign_up_name">닉네임</string>
+    <string name="str_sign_up_pw">비밀번호(영문, 숫자, 특수문자)</string>
+    <string name="str_sign_up_pw_crm">비밀번호 확인</string>
+    <string name="str_sign_up_email">이메일</string>
+    <string name="str_sign_up_area">지역</string>
+    <string name="str_sign_up_phone">전화번호</string>
+    <string name="str_sign_up_all_consent">전체동의</string>
+    <string name="str_sign_up_use_consent">이용약관 (필수)</string>
+    <string name="str_sign_up_use_user_info">개인정보 수집 및 이용 (필수)</string>
+    <string name="str_sign_up_email_receiving">이메일 수신동의</string>
+    <string name="str_sign_up_sms_receiving">SMS 수신동의</string>
+    <string name="str_sign_up_content">내용보기</string>
+
+    <string-array name="str_user_addr">
+        <item>서울</item>
+        <item>경기</item>
+        <item>인천</item>
+        <item>세종</item>
+        <item>대전</item>
+        <item>대구</item>
+        <item>울산</item>
+        <item>광주</item>
+        <item>부산</item>
+        <item>강원</item>
+        <item>충남</item>
+        <item>충북</item>
+        <item>경남</item>
+        <item>경북</item>
+        <item>전남</item>
+        <item>전북</item>
+        <item>제주</item>
+    </string-array>
+
+    <!-- Log In -->
+    <string name="str_login_title">로그인</string>
+    <string name="str_login_id">아이디</string>
+    <string name="str_login_pw">비밀번호</string>
+
+    <!-- Bottom Menu -->
+    <string name="str_bottom_menu_home">홈</string>
+    <string name="str_bottom_menu_theme">테마</string>
+    <string name="str_bottom_menu_person">더보기</string>
+
+    <!-- menu -->
+    <string name="str_menu_added">추가</string>
+
+    <!-- Settings -->
+    <string name="str_logout">로그아웃</string>
+    <string name="str_person_setting">설정</string>
+    <string name="str_person_notice">공지사항</string>
+    <string name="str_person_event">이벤트</string>
+    <string name="str_person_inquire">문의하기</string>
+    <string name="str_person_edit_profile">프로필 설정</string>
+    <string name="str_settings_alarm_title">알람 설정</string>
+    <string name="str_setting_alarm">알림 설정 및 수신 동의</string>
+    <string name="str_setting_marketing_alarm">이벤트 및 마케팅 활용 동의</string>
+    <string name="str_setting_customer_support_title">고객지원</string>
+    <string name="str_setting_customer_app_version">버전 정보</string>
+    <string name="str_setting_terms_of_use">이용약관</string>
+    <string name="str_setting_user_info_handling">개인정보 취급방침</string>
+    <string name="str_setting_open_source_licenses">오픈소스 라이선스</string>
+    <string name="str_setting_company_introduction">회사소개</string>
+
+    <!-- Main -->
+    <string name="open">열기</string>
+    <string name="close">닫기</string>
+
 </resources>
