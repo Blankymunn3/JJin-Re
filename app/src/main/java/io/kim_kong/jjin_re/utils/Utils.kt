@@ -1,19 +1,21 @@
 package io.kim_kong.jjin_re.utils
 
+import android.animation.Animator
 import android.app.Activity
 import android.os.Build
-import android.view.Gravity
-import android.view.View
-import android.view.Window
-import android.view.WindowManager
+import android.view.*
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import io.kim_kong.jjin_re.R
 
+
 object Utils {
 
+    const val EXTRA_CIRCULAR_REVEAL_X = "EXTRA_CIRCULAR_REVEAL_X"
+    const val EXTRA_CIRCULAR_REVEAL_Y = "EXTRA_CIRCULAR_REVEAL_Y"
     @JvmStatic
     fun setIconTintDark(activity: Activity?, hasToolBar: Boolean) {
         val window: Window = activity!!.window
@@ -49,7 +51,12 @@ object Utils {
     }
 
     @JvmStatic
-    fun visibleDeleteButton(activity: BaseActivity, editText: View, imageButton: View, item: MutableLiveData<String>) {
+    fun visibleDeleteButton(
+        activity: BaseActivity,
+        editText: View,
+        imageButton: View,
+        item: MutableLiveData<String>
+    ) {
         editText.setOnFocusChangeListener { _, it ->
             if (it)
                 item.observe(activity) {
@@ -58,6 +65,20 @@ object Utils {
                 }
             else imageButton.visibility = View.GONE
         }
+    }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    @JvmStatic
+    fun revealView(view: View) {
+        val centerY = view.measuredHeight / 2
+        val centerX = view.measuredWidth / 2
+        val animator: Animator = ViewAnimationUtils.createCircularReveal(
+            view,
+            centerX, centerY, 0f, view.width.toFloat()
+        )
+        animator.setDuration(400)
+        view.visibility = View.VISIBLE
+        animator.setStartDelay(0)
+        animator.start()
     }
 }

@@ -11,27 +11,17 @@ import java.util.concurrent.TimeUnit
 
 object APIClient {
     const val URL = "http://52.79.83.158:3000"
-    val okHttpClient = OkHttpClient.Builder()
-        .connectTimeout(2, TimeUnit.MINUTES)
-        .addInterceptor(UserAgentInterceptor("Android " + BaseApplication.appVersion))
-        .build()
+    private var mRetrofit: Retrofit? = null
 
-    private var mRetrofit: Retrofit? = Retrofit.Builder()
-        .baseUrl(URL)
-        .client(okHttpClient)
-        .addConverterFactory(GsonConverterFactory.create())
-        .addCallAdapterFactory(LiveDataCallAdapterFactory())
-        .build()
-
-    val instance: Retrofit
+    private val instance: Retrofit
         get() {
             val interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY
 
             val okHttpClient = OkHttpClient.Builder()
-                .connectTimeout(2, TimeUnit.MINUTES)
+                .connectTimeout(30, TimeUnit.SECONDS)
                 .addInterceptor(interceptor)
-                .addInterceptor(UserAgentInterceptor("Android " + BaseApplication.appVersion))
+                .addInterceptor(UserAgentInterceptor("JjinRe/Android " + BaseApplication.appVersion))
                 .build()
 
             if (mRetrofit == null) {
@@ -44,5 +34,5 @@ object APIClient {
             }
             return mRetrofit!!
         }
-    val jJinReAPI : JJinReAPI = mRetrofit!!.create(JJinReAPI::class.java)
+    val jJinReAPI : JJinReAPI = instance.create(JJinReAPI::class.java)
 }

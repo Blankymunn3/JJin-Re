@@ -24,6 +24,8 @@
         <activity android:name=".features.login.LoginActivity"/>
         <activity android:name=".features.signup.SignUpActivity"/>
         <activity android:name=".features.main.MainActivity" />
+        <activity android:name=".features.add_review.AddReviewActivity"
+            android:theme="@style/AppTheme.Transparent"/>
 
     </application>
 
