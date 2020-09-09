@@ -20,25 +20,23 @@
     <string name="str_sign_up_sms_receiving">SMS 수신동의</string>
     <string name="str_sign_up_content">내용보기</string>
 
-    <string-array name="str_user_addr">
-        <item>서울</item>
-        <item>경기</item>
-        <item>인천</item>
-        <item>세종</item>
-        <item>대전</item>
-        <item>대구</item>
-        <item>울산</item>
-        <item>광주</item>
-        <item>부산</item>
-        <item>강원</item>
-        <item>충남</item>
-        <item>충북</item>
-        <item>경남</item>
-        <item>경북</item>
-        <item>전남</item>
-        <item>전북</item>
-        <item>제주</item>
+    <string-array name="str_review_category">
+        <item>가구/인테리어</item>
+        <item>디지털/가전</item>
+        <item>반려동물용품</item>
+        <item>뷰티/미용</item>
+        <item>영화</item>
+        <item>의류</item>
+        <item>잡화</item>
+        <item>취미</item>
+        <item>기타</item>
     </string-array>
+
+    <string name="str_add_review_hint">
+        해당 제품(컨텐츠)에 대해 리뷰 내용을 작성해주세요.\n
+        허위리뷰 혹은 비추천 3개 이상 받을 경우\n
+        해당 리뷰는 자동 삭제 처리 됩니다.
+    </string>
 
     <!-- Log In -->
     <string name="str_login_title">로그인</string>
@@ -73,5 +71,6 @@
     <!-- Main -->
     <string name="open">열기</string>
     <string name="close">닫기</string>
+
 
 </resources>

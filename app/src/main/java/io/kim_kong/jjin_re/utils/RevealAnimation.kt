@@ -19,7 +19,7 @@ class RevealAnimation(val view: View, val revealX: Int, val revealY: Int, privat
             val finalRadius = (view.width.coerceAtLeast(view.height) * 1.1).toFloat()
             val circularReveal: Animator =
                 ViewAnimationUtils.createCircularReveal(view, x, y, 0f, finalRadius)
-            circularReveal.duration = 300
+            circularReveal.duration = 500
             circularReveal.interpolator = AccelerateInterpolator()
 
             view.visibility = View.VISIBLE
@@ -55,7 +55,6 @@ class RevealAnimation(val view: View, val revealX: Int, val revealY: Int, privat
     }
 
     init {
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             view.visibility = View.INVISIBLE
             val viewTreeObserver: ViewTreeObserver = view.viewTreeObserver

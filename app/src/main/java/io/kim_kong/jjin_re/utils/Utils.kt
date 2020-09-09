@@ -1,21 +1,24 @@
 package io.kim_kong.jjin_re.utils
 
-import android.animation.Animator
 import android.app.Activity
+import android.graphics.Bitmap
+import android.graphics.Matrix
+import android.media.ExifInterface
 import android.os.Build
-import android.view.*
+import android.view.Gravity
+import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import io.kim_kong.jjin_re.R
+import java.io.IOException
 
 
 object Utils {
 
-    const val EXTRA_CIRCULAR_REVEAL_X = "EXTRA_CIRCULAR_REVEAL_X"
-    const val EXTRA_CIRCULAR_REVEAL_Y = "EXTRA_CIRCULAR_REVEAL_Y"
     @JvmStatic
     fun setIconTintDark(activity: Activity?, hasToolBar: Boolean) {
         val window: Window = activity!!.window
@@ -51,12 +54,7 @@ object Utils {
     }
 
     @JvmStatic
-    fun visibleDeleteButton(
-        activity: BaseActivity,
-        editText: View,
-        imageButton: View,
-        item: MutableLiveData<String>
-    ) {
+    fun visibleDeleteButton(activity: BaseActivity, editText: View, imageButton: View, item: MutableLiveData<String>) {
         editText.setOnFocusChangeListener { _, it ->
             if (it)
                 item.observe(activity) {
@@ -67,18 +65,30 @@ object Utils {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    fun getOrientationOfImage(filepath: String?): Int {
+        val exif: ExifInterface?
+        exif = try {
+            ExifInterface(filepath!!)
+        } catch (e: IOException) {
+            e.printStackTrace()
+            return -1
+        }
+        val orientation = exif!!.getAttributeInt(ExifInterface.TAG_ORIENTATION, -1)
+        if (orientation != -1) {
+            when (orientation) {
+                ExifInterface.ORIENTATION_ROTATE_90 -> return 90
+                ExifInterface.ORIENTATION_ROTATE_180 -> return 180
+                ExifInterface.ORIENTATION_ROTATE_270 -> return 270
+            }
+        }
+        return 0
+    }
     @JvmStatic
-    fun revealView(view: View) {
-        val centerY = view.measuredHeight / 2
-        val centerX = view.measuredWidth / 2
-        val animator: Animator = ViewAnimationUtils.createCircularReveal(
-            view,
-            centerX, centerY, 0f, view.width.toFloat()
-        )
-        animator.setDuration(400)
-        view.visibility = View.VISIBLE
-        animator.setStartDelay(0)
-        animator.start()
+    fun getRotatedBitmap(bitmap: Bitmap?, degrees: Int): Bitmap? {
+        if (bitmap == null) return null
+        if (degrees == 0) return bitmap
+        val m = Matrix()
+        m.setRotate(degrees.toFloat(), bitmap.width.toFloat() / 2, bitmap.height.toFloat() / 2)
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, m, true)
     }
 }
