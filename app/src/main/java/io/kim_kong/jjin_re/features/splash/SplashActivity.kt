@@ -2,6 +2,7 @@ package io.kim_kong.jjin_re.features.splash
 
 import android.content.Intent
 import android.os.Bundle
+import com.google.android.material.snackbar.Snackbar
 import com.gun0912.tedpermission.util.ObjectUtils
 import io.kim_kong.jjin_re.R
 import io.kim_kong.jjin_re.databinding.ActivitySplashBinding
@@ -9,6 +10,7 @@ import io.kim_kong.jjin_re.features.login.LoginActivity
 import io.kim_kong.jjin_re.features.main.MainActivity
 import io.kim_kong.jjin_re.model.UserModel
 import io.kim_kong.jjin_re.utils.*
+import io.kim_kong.jjin_re.utils.Utils.showSnackBar
 import io.kim_kong.jjin_re.utils.Utils.showToast
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -34,7 +36,6 @@ class SplashActivity : BaseActivity() {
 
         viewModel.responseMessage.observe(this@SplashActivity) {
             if (!ObjectUtils.isEmpty(it)) {
-                showToast(it, this@SplashActivity)
                 if (it == "네트워크 상태를 확인해주세요.") finish()
             }
         }

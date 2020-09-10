@@ -11,6 +11,7 @@ import android.widget.SearchView
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
 import androidx.viewpager.widget.ViewPager
+import com.google.android.material.snackbar.Snackbar
 import io.kim_kong.jjin_re.R
 import io.kim_kong.jjin_re.adapter.FragmentAdapter
 import io.kim_kong.jjin_re.databinding.ActivityMainBinding
@@ -18,6 +19,7 @@ import io.kim_kong.jjin_re.features.add_review.AddReviewActivity
 import io.kim_kong.jjin_re.features.main.fragment.home.HomeFragment
 import io.kim_kong.jjin_re.features.main.fragment.more.MoreFragment
 import io.kim_kong.jjin_re.utils.BaseActivity
+import io.kim_kong.jjin_re.utils.BaseApplication
 import io.kim_kong.jjin_re.utils.GetViewModel
 import io.kim_kong.jjin_re.utils.RevealAnimation.Companion.EXTRA_CIRCULAR_REVEAL_X
 import io.kim_kong.jjin_re.utils.RevealAnimation.Companion.EXTRA_CIRCULAR_REVEAL_Y
@@ -63,7 +65,6 @@ class MainActivity : BaseActivity() {
             }
 
         })
-
         return true
     }
 
@@ -74,6 +75,7 @@ class MainActivity : BaseActivity() {
         binding.viewModel = viewModel
         setSupportActionBar(binding.tbMain)
         initActivityView()
+        Utils.showSnackBar("${BaseApplication.userModel.nickName}님 반갑습니다", binding.root, false)
 
         binding.fabMainAdd.setOnClickListener {
             presentActivity(it)
@@ -100,11 +102,7 @@ class MainActivity : BaseActivity() {
             override fun onPageScrollStateChanged(state: Int) {
             }
 
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
-            ) {
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
 
             }
 

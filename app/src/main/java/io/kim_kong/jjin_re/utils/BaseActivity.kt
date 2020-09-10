@@ -1,11 +1,12 @@
 package io.kim_kong.jjin_re.utils
 
 import android.app.Activity
+import android.util.Log
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import java.util.ArrayList
+import java.util.*
 
 open class BaseActivity : AppCompatActivity() {
 
@@ -18,6 +19,19 @@ open class BaseActivity : AppCompatActivity() {
             actList.clear()
         }
     }
+
+    open fun progressON() {
+        BaseApplication.instance.progressON(this@BaseActivity, null)
+    }
+
+    open fun progressON(message: String?) {
+        BaseApplication.instance.progressON(this@BaseActivity, message)
+    }
+
+    open fun progressOFF() {
+        BaseApplication.instance.progressOFF()
+    }
+
     protected inline fun <reified T : ViewDataBinding> binding(@LayoutRes resId: Int): Lazy<T> =
         lazy { DataBindingUtil.setContentView<T>(this, resId) }
 

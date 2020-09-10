@@ -37,7 +37,7 @@ class RevealAnimation(val view: View, val revealX: Int, val revealY: Int, privat
             val circularReveal: Animator = ViewAnimationUtils.createCircularReveal(
                 view, revealX, revealY, finalRadius, 0f
             )
-            circularReveal.duration = 300
+            circularReveal.duration = 600
             circularReveal.addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator?) {
                     view.visibility = View.INVISIBLE

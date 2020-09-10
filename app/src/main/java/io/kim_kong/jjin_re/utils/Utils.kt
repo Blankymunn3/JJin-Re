@@ -13,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
+import com.google.android.material.snackbar.Snackbar
 import io.kim_kong.jjin_re.R
 import java.io.IOException
 
@@ -51,6 +52,19 @@ object Utils {
         toast.duration = Toast.LENGTH_SHORT
         toast.view = toastDesign
         toast.show()
+    }
+
+    @JvmStatic
+    fun showSnackBar(message: String, view: View, indefinite: Boolean) {
+        if (!indefinite) {
+            Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show()
+        } else {
+            val snackBar = Snackbar.make(view, message, Snackbar.LENGTH_INDEFINITE)
+            snackBar.setTextColor(ContextCompat.getColor(view.context, R.color.colorAccent)).setAction("확인") {
+                snackBar.dismiss()
+            }
+            snackBar.show()
+        }
     }
 
     @JvmStatic
