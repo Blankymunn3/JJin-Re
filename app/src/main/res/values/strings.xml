@@ -2,6 +2,9 @@
     <!-- Main -->
     <string name="app_name">찐리 - 진짜리뷰들</string>
     <string name="str_submit">확인</string>
+    <string name="str_home_fragment_title">당신이 원하는 제품\n실구매자의 리뷰를 확인해보세요!</string>
+    <string name="str_search_title">제품명으로 리뷰를 검색해보세요!</string>
+    <string name="str_week_best_review">베스트 리뷰</string>
 
     <!-- Sign Up -->
     <string name="str_sign_up_title">회원가입</string>
@@ -20,16 +23,24 @@
     <string name="str_sign_up_sms_receiving">SMS 수신동의</string>
     <string name="str_sign_up_content">내용보기</string>
 
+    <!-- Category -->
+    <string name="str_category_furniture">가구/인테리어</string>
+    <string name="str_category_digital">디지털/가전</string>
+    <string name="str_category_pet">반려동물용품</string>
+    <string name="str_category_beauty">뷰티/미용</string>
+    <string name="str_category_movie">영화/연극</string>
+    <string name="str_category_clothing">의류/잡화</string>
+    <string name="str_category_hobby">취미</string>
+    <string name="str_category_etc">기타</string>
     <string-array name="str_review_category">
-        <item>가구/인테리어</item>
-        <item>디지털/가전</item>
-        <item>반려동물용품</item>
-        <item>뷰티/미용</item>
-        <item>영화</item>
-        <item>의류</item>
-        <item>잡화</item>
-        <item>취미</item>
-        <item>기타</item>
+        <item>@string/str_category_furniture</item>
+        <item>@string/str_category_digital</item>
+        <item>@string/str_category_pet</item>
+        <item>@string/str_category_beauty</item>
+        <item>@string/str_category_movie</item>
+        <item>@string/str_category_clothing</item>
+        <item>@string/str_category_hobby</item>
+        <item>@string/str_category_etc</item>
     </string-array>
 
     <string name="str_add_review_hint">

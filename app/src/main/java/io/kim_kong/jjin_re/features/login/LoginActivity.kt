@@ -21,6 +21,7 @@ class LoginActivity: BaseActivity() {
         super.onCreate(savedInstanceState)
         actList.add(this@LoginActivity)
         Utils.setIconTintDark(this@LoginActivity, true)
+        binding.lifecycleOwner = this@LoginActivity
         binding.viewModel = viewModel
 
         viewModel.isSaveButtonEnabled.observe(this) {

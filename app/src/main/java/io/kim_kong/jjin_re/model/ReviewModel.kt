@@ -4,6 +4,10 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class ReviewModel(
+    @SerializedName("uid")
+    @Expose
+    var uId: String,
+
     @SerializedName("user_id")
     @Expose
     var userId: String,
@@ -11,6 +15,10 @@ data class ReviewModel(
     @SerializedName("user_name")
     @Expose
     var userName: String,
+
+    @SerializedName("user_img")
+    @Expose
+    var userUrl: String = "",
 
     @SerializedName("product_name")
     @Expose
@@ -26,15 +34,15 @@ data class ReviewModel(
 
     @SerializedName("category")
     @Expose
-    var category: String,
+    var category: String = "0",
 
     @SerializedName("category_etc")
     @Expose
-    var categoryEtc: String,
+    var categoryEtc: String = "",
 
     @SerializedName("rating")
     @Expose
-    var rating: String,
+    var rating: Float,
 
     @SerializedName("like_cnt")
     @Expose

@@ -23,8 +23,9 @@ class SignUpActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        actList.add(this@SignUpActivity)
         Utils.setIconTintDark(this@SignUpActivity, true)
+        actList.add(this@SignUpActivity)
+        binding.lifecycleOwner = this@SignUpActivity
         binding.viewModel = viewModel
         binding.isVisibled = true
 

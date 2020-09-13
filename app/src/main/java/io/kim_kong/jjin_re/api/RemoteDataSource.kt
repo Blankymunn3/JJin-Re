@@ -1,6 +1,7 @@
 package io.kim_kong.jjin_re.api
 
 import io.kim_kong.jjin_re.data.LoginData
+import io.kim_kong.jjin_re.data.ReadReviewData
 import io.kim_kong.jjin_re.data.WriteReviewData
 import io.kim_kong.jjin_re.model.UserModel
 import io.kim_kong.jjin_re.repository.DownloadReviewListRepository
@@ -45,8 +46,20 @@ interface RemoteDataSource {
     )
 
     fun downloadReviewList(
-        userID: String,
+        readReviewData: ReadReviewData,
         onResponse: (Response<DownloadReviewListResponse>) -> Unit,
+        onFailure: (Throwable) -> Unit
+    )
+
+    fun downloadBestReviewList(
+        readReviewData: ReadReviewData,
+        onResponse: (Response<DownloadReviewListResponse>) -> Unit,
+        onFailure: (Throwable) -> Unit
+    )
+
+    fun downloadADBannerList(
+        userId: String,
+        onResponse: (Response<ADBannerResponse>) -> Unit,
         onFailure: (Throwable) -> Unit
     )
 }

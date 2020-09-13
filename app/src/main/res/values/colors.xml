@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#F2F4F3</color>
     <color name="colorAccent">#F3B9CB</color>
     <color name="colorMainBack">#F2F4F3</color>
+    <color name="colorBottom">#fafafa</color>
 
     <color name="colorNavBG">#0E1130</color>
 
@@ -25,4 +26,6 @@
     <color name="btnActive">#f5c922</color>
 
     <color name="colorGrayLine">#dbdbdb</color>
+
+    <color name="colorTextOutLine">#CCCCCC</color>
 </resources>

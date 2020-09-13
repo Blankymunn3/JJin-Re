@@ -134,6 +134,7 @@ open class AddReviewActivity: BaseActivity() {
     private fun initActivityView() {
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         Utils.setIconTintDark(this@AddReviewActivity, true)
+        binding.lifecycleOwner = this@AddReviewActivity
         binding.viewModel = viewModel
         setSupportActionBar(binding.tbAddReview)
         binding.tbAddReview.setNavigationOnClickListener {
@@ -163,7 +164,7 @@ open class AddReviewActivity: BaseActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 viewModel.addReviewCategory.postValue("$position")
                 when(position) {
-                    8 -> {
+                    7 -> {
                         binding.etAddReviewCategory.visibility = View.VISIBLE
                     }
                     else -> {

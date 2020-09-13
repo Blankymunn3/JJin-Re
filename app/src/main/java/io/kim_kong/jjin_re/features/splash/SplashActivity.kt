@@ -24,6 +24,7 @@ class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         actList.add(this@SplashActivity)
+        binding.lifecycleOwner = this@SplashActivity
         binding.viewModel = viewModel
         Utils.setIconTintDark(this@SplashActivity, true)
         BaseApplication.userModel = SharedPreferenceHelper.getUserDataToSharedPreference(this@SplashActivity)

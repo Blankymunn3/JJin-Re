@@ -1,7 +1,9 @@
 package io.kim_kong.jjin_re.api
 
 import io.kim_kong.jjin_re.data.LoginData
+import io.kim_kong.jjin_re.data.ReadReviewData
 import io.kim_kong.jjin_re.data.WriteReviewData
+import io.kim_kong.jjin_re.model.AdBannerModel
 import io.kim_kong.jjin_re.model.UserModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -18,6 +20,9 @@ interface JJinReAPI {
     @POST("/user/login")
     fun loginUser(@Body loginData: LoginData): Call<SignUpResponse>
 
+    @POST("/user/adbanner")
+    fun downloadADBannerList(@Query("user_id") userID: String): Call<ADBannerResponse>
+
     @Multipart
     @POST("/review/photo_upload")
     fun postImage(@Part image: ArrayList<MultipartBody.Part>, @Part("img") name: ArrayList<RequestBody>): Call<PhotoUploadResponse>
@@ -26,5 +31,9 @@ interface JJinReAPI {
     fun writeReview(@Body writeReviewData: WriteReviewData): Call<DefaultResponse>
 
     @POST("/review/review_list")
-    fun downloadReviewList(@Query("user_id") userID: String): Call<DownloadReviewListResponse>
+    fun downloadReviewList(@Body readReviewData: ReadReviewData): Call<DownloadReviewListResponse>
+
+    @POST("/review/review_best")
+    fun downloadBestReviewList(@Body readReviewData: ReadReviewData): Call<DownloadReviewListResponse>
+
 }

@@ -5,6 +5,6 @@
         android:title="검색"
         android:icon="@drawable/ic_search"
         app:tint="@color/colorWhite"
-        app:showAsAction="collapseActionView|ifRoom"
+        app:showAsAction="always"
         app:actionViewClass="android.widget.SearchView" />
 </menu>

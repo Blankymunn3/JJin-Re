@@ -11,6 +11,16 @@ import io.kim_kong.jjin_re.utils.Photo
 
 class ReviewItemRVAdapter(private val requestManager: RequestManager, var list: List<ReviewModel> = emptyList()): RecyclerView.Adapter<ReviewItemRVAdapter.ViewHolder>() {
 
+    private lateinit var itemClick: ItemClick
+
+    interface ItemClick {
+        fun onClick(uId: String)
+    }
+
+    fun setItemClick(itemClick: ItemClick) {
+        this.itemClick = itemClick
+    }
+
     class ViewHolder(val binding: RecyclerItemReviewBinding): RecyclerView.ViewHolder(binding.root)
 
     fun setData(newData: MutableList<ReviewModel>) {
@@ -46,8 +56,11 @@ class ReviewItemRVAdapter(private val requestManager: RequestManager, var list: 
         holder.binding.tvReviewItemProductName.text = list[position].productName
         holder.binding.tvReviewItemThumbDownCnt.text = list[position].angryCnt
         holder.binding.tvReviewItemThumbUpCnt.text = list[position].likeCnt
-        holder.binding.ratingReviewItem.rating = list[position].rating.toFloat()
+        holder.binding.ratingReviewItem.rating = list[position].rating
         holder.binding.tvReviewItemReviewer.text = list[position].userName
+        holder.binding.layoutMultiLinkPageItem.setOnClickListener {
+            itemClick.onClick(list[position].uId)
+        }
     }
 
     override fun getItemCount(): Int = list.size

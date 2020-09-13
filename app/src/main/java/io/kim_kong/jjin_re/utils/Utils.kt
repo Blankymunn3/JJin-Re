@@ -9,8 +9,10 @@ import android.view.Gravity
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import com.google.android.material.snackbar.Snackbar
@@ -57,18 +59,34 @@ object Utils {
     @JvmStatic
     fun showSnackBar(message: String, view: View, indefinite: Boolean) {
         if (!indefinite) {
-            Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show()
+            val snackBar = Snackbar.make(view, message, Snackbar.LENGTH_SHORT)
+            val snackBarView: View = snackBar.view
+            val params = snackBarView.layoutParams as CoordinatorLayout.LayoutParams
+            params.gravity = Gravity.TOP
+            snackBarView.layoutParams = params
+            snackBar.show()
         } else {
             val snackBar = Snackbar.make(view, message, Snackbar.LENGTH_INDEFINITE)
-            snackBar.setTextColor(ContextCompat.getColor(view.context, R.color.colorAccent)).setAction("확인") {
+            snackBar.setTextColor(ContextCompat.getColor(view.context, R.color.colorAccent)).setAction(
+                "확인"
+            ) {
                 snackBar.dismiss()
             }
+            val snackBarView: View = snackBar.view
+            val params = snackBarView.layoutParams as CoordinatorLayout.LayoutParams
+            params.gravity = Gravity.TOP
+            snackBarView.layoutParams = params
             snackBar.show()
         }
     }
 
     @JvmStatic
-    fun visibleDeleteButton(activity: BaseActivity, editText: View, imageButton: View, item: MutableLiveData<String>) {
+    fun visibleDeleteButton(
+        activity: BaseActivity,
+        editText: View,
+        imageButton: View,
+        item: MutableLiveData<String>
+    ) {
         editText.setOnFocusChangeListener { _, it ->
             if (it)
                 item.observe(activity) {
