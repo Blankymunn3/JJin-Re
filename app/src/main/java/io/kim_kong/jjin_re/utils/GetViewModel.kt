@@ -1,5 +1,6 @@
 package io.kim_kong.jjin_re.utils
 
+import android.app.Activity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel

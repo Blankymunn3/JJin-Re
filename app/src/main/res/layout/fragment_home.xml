@@ -123,13 +123,40 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/layout_home_category_all"
+                                style="@style/CategoryLayout"
+                                app:layout_constraintEnd_toStartOf="@+id/layout_home_category_furniture"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+
+                                <ImageView
+                                    android:id="@+id/iv_home_category_all"
+                                    style="@style/CategoryImageView"
+                                    android:src="@drawable/ic_category_all"
+                                    app:layout_constraintBottom_toTopOf="@+id/tv_home_category_all"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/tv_home_category_all"
+                                    style="@style/CategoryTextView"
+                                    android:text="@string/str_category_all"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/iv_home_category_all" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:id="@+id/layout_home_category_furniture"
                                 style="@style/CategoryLayout"
+                                app:layout_constraintStart_toEndOf="@+id/layout_home_category_all"
                                 app:layout_constraintEnd_toStartOf="@+id/layout_home_category_digital"
                                 app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent">
 
 
@@ -307,7 +334,7 @@
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:id="@+id/layout_home_category_hobby"
                                 style="@style/CategoryLayout"
-                                app:layout_constraintEnd_toStartOf="@+id/layout_home_category_etc"
+                                app:layout_constraintEnd_toStartOf="@+id/layout_home_category_food"
                                 app:layout_constraintStart_toEndOf="@+id/layout_home_category_clothing"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintTop_toTopOf="parent">
@@ -333,9 +360,38 @@
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <androidx.constraintlayout.widget.ConstraintLayout
-                                android:id="@+id/layout_home_category_etc"
+                                android:id="@+id/layout_home_category_food"
                                 style="@style/CategoryLayout"
                                 app:layout_constraintStart_toEndOf="@+id/layout_home_category_hobby"
+                                app:layout_constraintEnd_toStartOf="@+id/layout_home_category_etc"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+
+                                <ImageView
+                                    android:id="@+id/iv_home_category_food"
+                                    style="@style/CategoryImageView"
+                                    android:src="@drawable/ic_food"
+                                    app:tint="@color/colorWhite"
+                                    app:layout_constraintBottom_toTopOf="@+id/tv_home_category_food"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/tv_home_category_food"
+                                    style="@style/CategoryTextView"
+                                    android:text="@string/str_category_food"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/iv_home_category_food" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/layout_home_category_etc"
+                                style="@style/CategoryLayout"
+                                app:layout_constraintStart_toEndOf="@+id/layout_home_category_food"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintTop_toTopOf="parent">

@@ -9,7 +9,6 @@ import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
-import com.github.chrisbanes.photoview.PhotoView
 import io.kim_kong.jjin_re.R
 import io.kim_kong.jjin_re.databinding.RecyclerItemReviewThumbnailBinding
 
@@ -22,7 +21,7 @@ class ReviewThumbnailRVAdapter(
     private lateinit var itemClick: ItemClick
 
     interface ItemClick {
-        fun onClick(imageUri: List<String>)
+        fun onClick(imageUri: ArrayList<String>)
     }
 
     fun setItemClick(itemClick: ItemClick) {
@@ -73,7 +72,9 @@ class ReviewThumbnailRVAdapter(
         mDrawable.isCircular = true
         mIcon.setImageDrawable(mDrawable)
         holder.binding.ivReviewThumbnail.setOnClickListener {
-            itemClick.onClick(reviewThumbnailList)
+            val arr: ArrayList<String> = ArrayList(emptyList())
+            arr.addAll(reviewThumbnailList)
+            itemClick.onClick(arr)
         }
     }
 

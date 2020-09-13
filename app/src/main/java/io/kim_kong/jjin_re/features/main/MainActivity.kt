@@ -93,14 +93,15 @@ class MainActivity : BaseActivity() {
     fun onCategoryItemClick(view: View) {
         var category = "0"
         when (view.id) {
-            R.id.layout_home_category_furniture -> category = "0"
-            R.id.layout_home_category_digital -> category = "1"
-            R.id.layout_home_category_pet -> category = "2"
-            R.id.layout_home_category_beauty -> category = "3"
-            R.id.layout_home_category_movie -> category = "4"
-            R.id.layout_home_category_clothing -> category = "5"
-            R.id.layout_home_category_hobby -> category = "6"
-            R.id.layout_home_category_etc -> category = "7"
+            R.id.layout_home_category_furniture -> category = "1"
+            R.id.layout_home_category_digital -> category = "2"
+            R.id.layout_home_category_pet -> category = "3"
+            R.id.layout_home_category_beauty -> category = "4"
+            R.id.layout_home_category_movie -> category = "5"
+            R.id.layout_home_category_clothing -> category = "6"
+            R.id.layout_home_category_hobby -> category = "7"
+            R.id.layout_home_category_food -> category ="8"
+            R.id.layout_home_category_etc -> category = "9"
         }
         val intent = Intent(this@MainActivity, CategoryMainActivity::class.java)
         intent.putExtra(EXTRA_CATEGORY_DATA, category)

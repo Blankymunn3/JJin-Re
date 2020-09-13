@@ -6,7 +6,6 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView
-import com.github.chrisbanes.photoview.PhotoView
 import com.makeramen.roundedimageview.RoundedImageView
 import com.willy.ratingbar.RotationRatingBar
 import io.kim_kong.jjin_re.R

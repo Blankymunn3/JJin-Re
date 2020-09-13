@@ -24,6 +24,7 @@
     <string name="str_sign_up_content">내용보기</string>
 
     <!-- Category -->
+    <string name="str_category_all">전체</string>
     <string name="str_category_furniture">가구/인테리어</string>
     <string name="str_category_digital">디지털/가전</string>
     <string name="str_category_pet">반려동물용품</string>
@@ -31,8 +32,10 @@
     <string name="str_category_movie">영화/연극</string>
     <string name="str_category_clothing">의류/잡화</string>
     <string name="str_category_hobby">취미</string>
+    <string name="str_category_food">푸드</string>
     <string name="str_category_etc">기타</string>
     <string-array name="str_review_category">
+        <item>@string/str_category_all</item>
         <item>@string/str_category_furniture</item>
         <item>@string/str_category_digital</item>
         <item>@string/str_category_pet</item>
@@ -40,6 +43,7 @@
         <item>@string/str_category_movie</item>
         <item>@string/str_category_clothing</item>
         <item>@string/str_category_hobby</item>
+        <item>@string/str_category_food</item>
         <item>@string/str_category_etc</item>
     </string-array>
 

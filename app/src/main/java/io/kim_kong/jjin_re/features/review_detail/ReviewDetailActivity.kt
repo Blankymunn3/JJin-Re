@@ -2,6 +2,10 @@ package io.kim_kong.jjin_re.features.review_detail
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.opengl.GLES30
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,16 +15,18 @@ import android.view.WindowManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
-import com.github.chrisbanes.photoview.PhotoView
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.gms.ads.*
+import com.stfalcon.imageviewer.StfalconImageViewer
 import io.kim_kong.jjin_re.R
 import io.kim_kong.jjin_re.adapter.ReviewThumbnailRVAdapter
 import io.kim_kong.jjin_re.databinding.ActivityReviewDetailBinding
-import io.kim_kong.jjin_re.features.photo_view.PhotoViewDialog
 import io.kim_kong.jjin_re.utils.*
 import io.kim_kong.jjin_re.utils.Extra.EXTRA_REVIEW_UID
 import me.relex.circleindicator.CircleIndicator2
 import java.util.*
+import kotlin.collections.ArrayList
 
 class ReviewDetailActivity : BaseActivity() {
     val binding by binding<ActivityReviewDetailBinding>(R.layout.activity_review_detail)
@@ -29,9 +35,6 @@ class ReviewDetailActivity : BaseActivity() {
     private lateinit var snapHelper :SnapHelperOneByOne
 
     lateinit var requestManager : RequestManager
-
-    private val photoViewDialog
-        get() = supportFragmentManager.findFragmentByTag("photoDialog") as? PhotoViewDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,8 +94,23 @@ class ReviewDetailActivity : BaseActivity() {
         }
 
         reviewThumbnailRVAdapter.setItemClick(object : ReviewThumbnailRVAdapter.ItemClick {
-            override fun onClick(imageUri: List<String>) {
-                photoViewDialog ?: PhotoViewDialog(requestManager, imageUri).show(supportFragmentManager, "photoDialog")
+            override fun onClick(imageUri: ArrayList<String>) {
+
+                StfalconImageViewer.Builder(
+                    this@ReviewDetailActivity,
+                    ArrayList(imageUri)
+                ) { view, image ->
+                    requestManager
+                        .load(image)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .override(
+                            (GLES30.GL_MAX_TEXTURE_SIZE * 0.4).toInt(),
+                            (GLES30.GL_MAX_TEXTURE_SIZE * 0.4).toInt()
+                        )
+                        .transition(DrawableTransitionOptions.withCrossFade())
+                        .error(ColorDrawable(Color.GRAY))
+                        .into(view)
+                }.show()
             }
 
         })

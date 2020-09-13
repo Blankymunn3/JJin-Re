@@ -88,8 +88,15 @@ class CategoryFragment:Fragment() {
             binding.rvReviewItem.hideShimmerAdapter()
             if (viewModel.reviewList.value!!.size > 0) {
                 binding.tvReviewListEmpty.visibility = View.GONE
+                binding.lottieEmptyReview.visibility = View.GONE
+                binding.lottieEmptyReview.loop(false)
                 reviewItemRVAdapter.setData(it)
-            } else binding.tvReviewListEmpty.visibility = View.VISIBLE
+            } else {
+                binding.tvReviewListEmpty.visibility = View.VISIBLE
+                binding.lottieEmptyReview.visibility = View.VISIBLE
+                binding.lottieEmptyReview.playAnimation()
+                binding.lottieEmptyReview.loop(true)
+            }
         })
 
         reviewItemRVAdapter.setItemClick(object : ReviewItemRVAdapter.ItemClick {

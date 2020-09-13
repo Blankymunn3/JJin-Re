@@ -156,15 +156,21 @@ open class AddReviewActivity: BaseActivity() {
             layoutManager = SpeedyLinearLayoutManager(this@AddReviewActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = addReviewPhotoRVAdapter
         }
+        val arrCategory = ArrayList<String>()
+        for ((i, str) in resources.getStringArray(R.array.str_review_category).withIndex()) {
+            if(i != 0) {
+                arrCategory.add(str)
+            }
+        }
         binding.spinnerAddReviewCategory.adapter =
-            ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, resources.getStringArray(R.array.str_review_category))
+            ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, arrCategory)
         binding.spinnerAddReviewCategory.setSelection(0)
         binding.spinnerAddReviewCategory.background.setColorFilter(ContextCompat.getColor(this@AddReviewActivity, R.color.colorBlack), PorterDuff.Mode.SRC_ATOP)
         binding.spinnerAddReviewCategory.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                viewModel.addReviewCategory.postValue("$position")
+                viewModel.addReviewCategory.postValue("${position + 1}")
                 when(position) {
-                    7 -> {
+                    9 -> {
                         binding.etAddReviewCategory.visibility = View.VISIBLE
                     }
                     else -> {
