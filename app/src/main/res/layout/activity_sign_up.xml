@@ -237,6 +237,48 @@
                                 android:visibility="gone" />
 
                         </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <EditText
+                                android:id="@+id/et_signup_phone"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:background="@drawable/edt_login_selector"
+                                android:fontFamily="@font/notosanskr_regular"
+                                android:hint="@string/str_sign_up_phone"
+                                android:includeFontPadding="false"
+                                android:inputType="phone"
+                                android:letterSpacing="-0.05"
+                                android:paddingTop="14dp"
+                                android:paddingBottom="14dp"
+                                android:paddingStart="10dp"
+                                android:singleLine="true"
+                                android:maxLength="11"
+                                android:textColor="#222222"
+                                android:textColorHint="#AAAAAA"
+                                android:textSize="14sp"
+                                android:text="@={viewModel.userPhone}"/>
+
+                            <ImageButton
+                                android:id="@+id/del_edt_phone"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="14dp"
+                                android:background="@color/Transparent"
+                                android:onClick="onClickDeleteEditTextContent"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/ic_edt_delete"
+                                android:visibility="gone" />
+
+                        </RelativeLayout>
+
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -251,7 +293,7 @@
                                 android:fontFamily="@font/notosanskr_regular"
                                 android:hint="@string/str_sign_up_name"
                                 android:includeFontPadding="false"
-                                android:inputType="textPassword"
+                                android:inputType="textAutoComplete"
                                 android:letterSpacing="-0.05"
                                 android:paddingTop="14dp"
                                 android:paddingBottom="14dp"
@@ -276,6 +318,7 @@
                                 android:visibility="gone" />
 
                         </RelativeLayout>
+
                     </LinearLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

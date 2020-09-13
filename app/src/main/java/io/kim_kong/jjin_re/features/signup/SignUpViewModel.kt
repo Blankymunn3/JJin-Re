@@ -16,28 +16,32 @@ class SignUpViewModel : ViewModel() {
 
     val responseMessage = MutableLiveData("")
     private val idCheck = MutableLiveData(false)
+    val phoneCheck = MutableLiveData(false)
 
     val userID = MutableLiveData("")
     val userPW = MutableLiveData("")
     val userPwConFirm = MutableLiveData("")
     val userNickName = MutableLiveData("")
+    val userPhone = MutableLiveData("")
 
-    val isSaveButtonEnabled = liveData.mediatorLiveData(userID, userPW, userPwConFirm, userNickName, idCheck) {
-        !userID.value.isNullOrEmpty() && !userPW.value.isNullOrEmpty() && !userPwConFirm.value.isNullOrEmpty() && !userNickName.value.isNullOrEmpty() && idCheck.value!!
+    val isSaveButtonEnabled = liveData.mediatorLiveData(userID, userPW, userPwConFirm, userNickName, userPhone, idCheck, phoneCheck) {
+        !userID.value.isNullOrEmpty() && !userPW.value.isNullOrEmpty() && !userPwConFirm.value.isNullOrEmpty() && !userNickName.value.isNullOrEmpty()
+        !userPhone.value.isNullOrEmpty() && phoneCheck.value!! && idCheck.value!!
     }
 
     fun userIdCheck() {
         viewModelScope.launch {
             signUpRepository.userIdCheck(userId = userID.value!!,
-            onResponse = {
-                if (it.isSuccessful) {
-                    idCheck.value = it.body()!!.code == "200"
-                    responseMessage.value = it.body()!!.message
-                }
-            },
-            onFailure = {
-                it.printStackTrace()
-            })
+                userToken = "",
+                onResponse = {
+                    if (it.isSuccessful) {
+                        idCheck.value = it.body()!!.code == "200"
+                        responseMessage.value = it.body()!!.message
+                    }
+                },
+                onFailure = {
+                    it.printStackTrace()
+                })
         }
     }
 

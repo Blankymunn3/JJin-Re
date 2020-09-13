@@ -53,4 +53,9 @@ class CategoryMainActivity: BaseActivity() {
         binding.vpCategoryMain.setCurrentItem(category, false)
 
     }
+
+    override fun onPause() {
+        super.onPause()
+        actList.remove(this@CategoryMainActivity)
+    }
 }

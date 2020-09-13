@@ -30,12 +30,10 @@ object SharedPreferenceHelper {
 
         editor.putString("user_id", userModel.userId)
         editor.putString("user_name", userModel.nickName)
-        editor.putString("user_email", userModel.email)
         editor.putString("user_phone", userModel.phone)
-        editor.putString("user_area", userModel.area)
         editor.putString("user_type", userModel.type)
+        editor.putString("user_img", userModel.userImg)
         editor.putString("onPush", userModel.isPushAllow)
-        editor.putString("mktAllow", userModel.isMktAllow)
 
         BaseApplication.userModel = userModel
 
@@ -47,13 +45,11 @@ object SharedPreferenceHelper {
             activity.getSharedPreferences("setting", Activity.MODE_PRIVATE)
         val model = UserModel()
         model.userId = setting.getString("user_id", "")!!
-        model.email = setting.getString("user_email", "")!!
         model.nickName = setting.getString("user_name", "")!!
+        model.userImg = setting.getString("user_img", "")!!
         model.phone = setting.getString("user_phone", "")!!
-        model.area = setting.getString("user_area", "")!!
         model.type = setting.getString("user_type", "")!!
         model.isPushAllow = setting.getString("onPush", "")!!
-        model.isMktAllow = setting.getString("mktAllow", "")!!
 
         return model
     }
@@ -65,12 +61,10 @@ object SharedPreferenceHelper {
 
         editor.putString("user_id", "")
         editor.putString("user_name", "")
-        editor.putString("user_email", "")
+        editor.putString("user_img", "")
         editor.putString("user_phone", "")
-        editor.putString("user_area", "")
         editor.putString("user_type", "")
         editor.putString("onPush", "")
-        editor.putString("mktAllow", "")
 
         editor.apply()
     }

@@ -31,6 +31,7 @@
         </activity>
         <activity android:name=".features.login.LoginActivity"/>
         <activity android:name=".features.signup.SignUpActivity"/>
+        <activity android:name=".features.edit_profile.EditProfileActivity"/>
         <activity android:name=".features.main.MainActivity" />
         <activity android:name=".features.add_review.AddReviewActivity"
             android:windowSoftInputMode="adjustResize"
@@ -38,6 +39,7 @@
         <activity android:name=".features.category.CategoryMainActivity"/>
         <activity android:name=".features.search.SearchActivity"/>
         <activity android:name=".features.review_detail.ReviewDetailActivity"/>
+        <activity android:name=".features.my_review.MyReviewActivity"/>
     </application>
 
 </manifest>

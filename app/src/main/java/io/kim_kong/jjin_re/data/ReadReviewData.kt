@@ -22,5 +22,9 @@ data class ReadReviewData (
 
     @SerializedName("limit")
     @Expose
-    var list: String = "10"
+    var limit: String = "20",
+
+    @SerializedName("search")
+    @Expose
+    var search: String = ""
 )

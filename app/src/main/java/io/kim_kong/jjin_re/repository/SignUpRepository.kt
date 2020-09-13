@@ -11,9 +11,10 @@ class SignUpRepository {
 
     fun userIdCheck(
         userId: String,
+        userToken: String,
         onResponse: (Response<SignUpResponse>) -> Unit,
         onFailure: (Throwable) -> Unit) {
-        remoteDataSource.userIdCheck(userId, onResponse, onFailure)
+        remoteDataSource.userIdCheck(userId, userToken, onResponse, onFailure)
     }
     fun signUpUser(
         userModel: UserModel,

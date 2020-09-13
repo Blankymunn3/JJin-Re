@@ -3,40 +3,36 @@ package io.kim_kong.jjin_re.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class UserModel {
+data class UserModel (
     @SerializedName("user_id")
     @Expose
-    lateinit var userId: String
+    var userId: String = "",
 
     @SerializedName("user_passwd")
     @Expose
-    lateinit var userPW: String
+    var userPW: String = "",
 
     @SerializedName("user_name")
     @Expose
-    var nickName: String = ""
-
-    @SerializedName("user_email")
-    @Expose
-    var email: String = ""
-
-    @SerializedName("user_phone")
-    @Expose
-    var phone: String = ""
-
-    @SerializedName("user_area")
-    @Expose
-    var area: String = ""
+    var nickName: String = "",
 
     @SerializedName("user_type")
     @Expose
-    var type: String = ""
+    var type: String = "",
+
+    @SerializedName("user_phone")
+    @Expose
+    var phone: String = "",
+
+    @SerializedName("user_img")
+    @Expose
+    var userImg: String = "",
+
+    @SerializedName("user_token")
+    @Expose
+    var userToken: String ="",
 
     @SerializedName("onPush")
     @Expose
     var isPushAllow: String = "0"
-
-    @SerializedName("onMktAllow")
-    @Expose
-    var isMktAllow: String = ""
-}
+)

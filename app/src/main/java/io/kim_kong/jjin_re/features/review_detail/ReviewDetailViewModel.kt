@@ -18,7 +18,7 @@ class ReviewDetailViewModel: ViewModel() {
     val uId = MutableLiveData("")
 
     fun getReviewDetailDataFromServer() {
-        readReviewData = ReadReviewData(BaseApplication.userModel.userId, "", uId.value!!)
+        readReviewData = ReadReviewData("", "", uId.value!!)
         viewModelScope.launch {
             downloadReviewListRepository.downloadReviewList(readReviewData = readReviewData,
             onResponse = {

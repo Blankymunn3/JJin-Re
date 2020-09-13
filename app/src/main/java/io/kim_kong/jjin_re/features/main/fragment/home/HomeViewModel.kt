@@ -38,7 +38,7 @@ class HomeViewModel: ViewModel() {
 
     fun reviewListDownloadFromServer() {
         isInitialized.postValue(true)
-        readReviewData = ReadReviewData(BaseApplication.userModel.userId)
+        readReviewData = ReadReviewData("")
         viewModelScope.launch {
             downloadReviewListRepository.downloadBestReviewList(readReviewData = readReviewData,
             onResponse = {

@@ -2,6 +2,7 @@ package io.kim_kong.jjin_re.features.signup
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
 import com.gun0912.tedpermission.util.ObjectUtils
 import io.kim_kong.jjin_re.databinding.ActivitySignUpBinding
@@ -14,6 +15,7 @@ import io.kim_kong.jjin_re.model.UserModel
 import io.kim_kong.jjin_re.utils.BaseActivity
 import io.kim_kong.jjin_re.utils.Utils
 import java.util.regex.Matcher
+import java.util.regex.Pattern
 
 class SignUpActivity : BaseActivity() {
     private val binding by binding<ActivitySignUpBinding>(R.layout.activity_sign_up)
@@ -29,26 +31,41 @@ class SignUpActivity : BaseActivity() {
         binding.viewModel = viewModel
         binding.isVisibled = true
 
-        viewModel.isSaveButtonEnabled.observe(this) {
+        viewModel.isSaveButtonEnabled.observe(this@SignUpActivity) {
             binding.btnSignupNext.isEnabled = it
         }
 
-        viewModel.successLoginCommand.observe(this) {
+        viewModel.successLoginCommand.observe(this@SignUpActivity) {
             if (!ObjectUtils.isEmpty(it)) onSignUpNextPage()
         }
-        viewModel.responseMessage.observe(this) {
-            if (!ObjectUtils.isEmpty(it)) Utils.showToast(it, this)
+        viewModel.responseMessage.observe(this@SignUpActivity) {
+            if (!ObjectUtils.isEmpty(it)) Utils.showToast(it, this@SignUpActivity)
         }
 
-        Utils.visibleDeleteButton(this, binding.etSignupId, binding.delEdtId, viewModel.userID)
-        Utils.visibleDeleteButton(this, binding.etSignupPassword, binding.delEdtPw, viewModel.userPW)
-        Utils.visibleDeleteButton(this, binding.etSignupPasswordConfirm, binding.delEdtPwConfirm, viewModel.userPwConFirm)
-        Utils.visibleDeleteButton(this, binding.etSignupNickname, binding.delEdtNickName, viewModel.userNickName)
+        Utils.visibleDeleteButton(this@SignUpActivity, binding.etSignupId, binding.delEdtId, viewModel.userID)
+        Utils.visibleDeleteButton(this@SignUpActivity, binding.etSignupPassword, binding.delEdtPw, viewModel.userPW)
+        Utils.visibleDeleteButton(this@SignUpActivity, binding.etSignupPasswordConfirm, binding.delEdtPwConfirm, viewModel.userPwConFirm)
+        Utils.visibleDeleteButton(this@SignUpActivity, binding.etSignupNickname, binding.delEdtNickName, viewModel.userNickName)
+        Utils.visibleDeleteButton(this@SignUpActivity, binding.etSignupPhone, binding.delEdtPhone, viewModel.userPhone)
 
         binding.etSignupId.onFocusChangeListener =
             View.OnFocusChangeListener { _, hasFocus ->
                 if (!hasFocus) {
                     viewModel.userIdCheck()
+                }
+            }
+
+        binding.etSignupPhone.onFocusChangeListener =
+            View.OnFocusChangeListener { _, hasFocus ->
+                if (!hasFocus) {
+                    val pattern: Pattern = Pattern.compile("([0-9]{3})([0-9]{4})([0-9]{4})")
+                    matcher = pattern.matcher(binding.etSignupPhone.text.toString())
+                    if (!matcher.matches()) {
+                        Utils.showToast("전화번호 형식으로 입력해주세요.", this)
+                        viewModel.phoneCheck.value = false
+                    } else {
+                        viewModel.phoneCheck.value = true
+                    }
                 }
             }
     }
@@ -57,18 +74,11 @@ class SignUpActivity : BaseActivity() {
 
     fun onClickDeleteEditTextContent(view: View) {
         when (view.id) {
-            R.id.del_edt_id -> {
-                binding.etSignupId.setText("")
-            }
-            R.id.del_edt_pw -> {
-                binding.etSignupPassword.setText("")
-            }
-            R.id.del_edt_pw_confirm -> {
-                binding.etSignupPasswordConfirm.setText("")
-            }
-            R.id.del_edt_nick_name -> {
-                binding.etSignupNickname.setText("")
-            }
+            R.id.del_edt_id -> binding.etSignupId.setText("")
+            R.id.del_edt_pw -> binding.etSignupPassword.setText("")
+            R.id.del_edt_pw_confirm -> binding.etSignupPasswordConfirm.setText("")
+            R.id.del_edt_nick_name -> binding.etSignupNickname.setText("")
+            R.id.del_edt_phone -> binding.etSignupPhone.setText("")
         }
     }
 
@@ -99,19 +109,6 @@ class SignUpActivity : BaseActivity() {
                         viewModel.emailCheck.value = false
                     } else {
                         viewModel.emailCheck.value = true
-                    }
-                }
-            }
-        binding.etSignupPhone.onFocusChangeListener =
-            View.OnFocusChangeListener { _, hasFocus ->
-                if (!hasFocus) {
-                    val pattern: Pattern = Pattern.compile("([0-9]{3})([0-9]{4})([0-9]{4})")
-                    matcher = pattern.matcher(binding.etSignupPhone.text.toString())
-                    if (!matcher.matches()) {
-                        Utils.showToast("전화번호 형식으로 입력해주세요.", this)
-                        viewModel.phoneCheck.value = false
-                    } else {
-                        viewModel.phoneCheck.value = true
                     }
                 }
             }

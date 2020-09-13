@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.viewpager.widget.ViewPager
+import com.google.firebase.messaging.FirebaseMessaging
 import io.kim_kong.jjin_re.R
 import io.kim_kong.jjin_re.adapter.FragmentAdapter
 import io.kim_kong.jjin_re.databinding.ActivityMainBinding
@@ -16,6 +17,7 @@ import io.kim_kong.jjin_re.features.main.fragment.more.MoreFragment
 import io.kim_kong.jjin_re.features.search.SearchActivity
 import io.kim_kong.jjin_re.utils.BaseActivity
 import io.kim_kong.jjin_re.utils.BaseApplication
+import io.kim_kong.jjin_re.utils.Extra.EXTRA_MY_REVIEW
 import io.kim_kong.jjin_re.utils.GetViewModel
 import io.kim_kong.jjin_re.utils.RevealAnimation.Companion.EXTRA_CIRCULAR_REVEAL_X
 import io.kim_kong.jjin_re.utils.RevealAnimation.Companion.EXTRA_CIRCULAR_REVEAL_Y
@@ -25,6 +27,7 @@ import io.kim_kong.jjin_re.utils.Utils
 class MainActivity : BaseActivity() {
     private val binding by binding<ActivityMainBinding>(R.layout.activity_main)
     val viewModel by GetViewModel(MainViewModel::class.java)
+    var fragmentPosition: Int = 0
 
     private var defaultElevation = 0.0f
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +42,6 @@ class MainActivity : BaseActivity() {
             presentActivity(it)
         }
     }
-
 
     private fun presentActivity(view: View) {
         val intent = Intent(this, AddReviewActivity::class.java)
@@ -58,7 +60,13 @@ class MainActivity : BaseActivity() {
         binding.vpMain.setCurrentItem(0, false)
         binding.vpMain.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {}
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+            }
+
             override fun onPageSelected(position: Int) {
                 when (position) {
                     0 -> binding.bottomNavigationView.selectedItemId = R.id.menu_home
@@ -70,11 +78,13 @@ class MainActivity : BaseActivity() {
         binding.bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menu_home -> {
+                    fragmentPosition = 0
                     setElevation(defaultElevation)
                     binding.vpMain.setCurrentItem(0, false)
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.menu_more -> {
+                    fragmentPosition = 2
                     setElevation(0.0f)
                     binding.vpMain.setCurrentItem(2, false)
                     return@setOnNavigationItemSelectedListener true
@@ -92,6 +102,7 @@ class MainActivity : BaseActivity() {
 
     fun onCategoryItemClick(view: View) {
         var category = "0"
+        var userID = ""
         when (view.id) {
             R.id.layout_home_category_furniture -> category = "1"
             R.id.layout_home_category_digital -> category = "2"
@@ -100,10 +111,11 @@ class MainActivity : BaseActivity() {
             R.id.layout_home_category_movie -> category = "5"
             R.id.layout_home_category_clothing -> category = "6"
             R.id.layout_home_category_hobby -> category = "7"
-            R.id.layout_home_category_food -> category ="8"
+            R.id.layout_home_category_food -> category = "8"
             R.id.layout_home_category_etc -> category = "9"
         }
         val intent = Intent(this@MainActivity, CategoryMainActivity::class.java)
+        intent.putExtra(EXTRA_MY_REVIEW, userID)
         intent.putExtra(EXTRA_CATEGORY_DATA, category)
         startActivity(intent)
     }
@@ -117,6 +129,15 @@ class MainActivity : BaseActivity() {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             defaultElevation = binding.abMain.elevation
         }
+    }
+
+    override fun onBackPressed() {
+        if (fragmentPosition != 0) {
+            binding.vpMain.setCurrentItem(0, false)
+        } else {
+            super.onBackPressed()
+        }
+
     }
 
     override fun onPause() {

@@ -17,10 +17,11 @@ class RemoteDataSourceImpl: RemoteDataSource {
     private val jJinReAPI = APIClient.jJinReAPI
     override fun userIdCheck(
         userID: String,
+        userToken: String,
         onResponse: (Response<SignUpResponse>) -> Unit,
         onFailure: (Throwable) -> Unit
     ) {
-        jJinReAPI.userIdCheck(userID).enqueue(object : Callback<SignUpResponse> {
+        jJinReAPI.userIdCheck(userID, userToken).enqueue(object : Callback<SignUpResponse> {
             override fun onResponse(
                 call: Call<SignUpResponse>,
                 response: Response<SignUpResponse>
@@ -41,6 +42,27 @@ class RemoteDataSourceImpl: RemoteDataSource {
         onFailure: (Throwable) -> Unit
     ) {
         jJinReAPI.loginUser(loginData).enqueue(object : Callback<SignUpResponse> {
+            override fun onResponse(
+                call: Call<SignUpResponse>,
+                response: Response<SignUpResponse>
+            ) {
+                onResponse(response)
+            }
+
+            override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
+                onFailure(t)
+            }
+
+        })
+    }
+
+    override fun socialLoginUserRepo(
+        userModel: UserModel,
+        loginType: String,
+        onResponse: (Response<SignUpResponse>) -> Unit,
+        onFailure: (Throwable) -> Unit
+    ) {
+        jJinReAPI.socialLoginUser(userModel, loginType).enqueue(object : Callback<SignUpResponse> {
             override fun onResponse(
                 call: Call<SignUpResponse>,
                 response: Response<SignUpResponse>
@@ -169,5 +191,26 @@ class RemoteDataSourceImpl: RemoteDataSource {
 
         })
     }
+
+    override fun downloadReviewCnt(
+        userID: String,
+        onResponse: (Response<DefaultResponse>) -> Unit,
+        onFailure: (Throwable) -> Unit
+    ) {
+        jJinReAPI.downloadReviewCnt(userID).enqueue(object : Callback<DefaultResponse> {
+            override fun onResponse(
+                call: Call<DefaultResponse>,
+                response: Response<DefaultResponse>
+            ) {
+                onResponse(response)
+            }
+
+            override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
+                onFailure(t)
+            }
+
+        })
+    }
+
 
 }

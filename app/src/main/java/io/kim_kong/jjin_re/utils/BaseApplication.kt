@@ -47,6 +47,8 @@ class BaseApplication : Application() {
         @Volatile
         var DEBUG = false
         var storeVersion = ""
+        var firebaseToken = ""
+        var loginType = ""
         var appVersion: String? = null
         var userModel: UserModel = UserModel()
         lateinit var requestManager: RequestManager

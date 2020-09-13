@@ -96,10 +96,7 @@ class ReviewDetailActivity : BaseActivity() {
         reviewThumbnailRVAdapter.setItemClick(object : ReviewThumbnailRVAdapter.ItemClick {
             override fun onClick(imageUri: ArrayList<String>) {
 
-                StfalconImageViewer.Builder(
-                    this@ReviewDetailActivity,
-                    ArrayList(imageUri)
-                ) { view, image ->
+                StfalconImageViewer.Builder(this@ReviewDetailActivity, ArrayList(imageUri)) { view, image ->
                     requestManager
                         .load(image)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -136,5 +133,10 @@ class ReviewDetailActivity : BaseActivity() {
         val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
         MobileAds.setRequestConfiguration(configuration)
         */
+    }
+
+    override fun onPause() {
+        super.onPause()
+        actList.remove(this@ReviewDetailActivity)
     }
 }

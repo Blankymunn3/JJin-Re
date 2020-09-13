@@ -16,12 +16,20 @@ interface RemoteDataSource {
 
     fun userIdCheck(
         @Query("user_id") userID: String,
+        @Query("user_token") userToken: String,
         onResponse: (Response<SignUpResponse>) -> Unit,
         onFailure: (Throwable) -> Unit
     )
 
     fun loginUserRepo(
         @Body loginData: LoginData,
+        onResponse: (Response<SignUpResponse>) -> Unit,
+        onFailure: (Throwable) -> Unit
+    )
+
+    fun socialLoginUserRepo(
+        @Body userModel: UserModel,
+        @Query("login_type") loginType: String,
         onResponse: (Response<SignUpResponse>) -> Unit,
         onFailure: (Throwable) -> Unit
     )
@@ -60,6 +68,12 @@ interface RemoteDataSource {
     fun downloadADBannerList(
         userId: String,
         onResponse: (Response<ADBannerResponse>) -> Unit,
+        onFailure: (Throwable) -> Unit
+    )
+
+    fun downloadReviewCnt(
+        userID: String,
+        onResponse: (Response<DefaultResponse>) -> Unit,
         onFailure: (Throwable) -> Unit
     )
 }

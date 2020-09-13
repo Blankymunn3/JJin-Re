@@ -19,7 +19,7 @@ class CategoryFragmentViewModel: ViewModel() {
     private val limit = MutableLiveData("20")
 
     fun reviewListDownloadFromServer() {
-        readReviewData = ReadReviewData(BaseApplication.userModel.userId, category.value!!, "", page.value!!, limit.value!!)
+        readReviewData = ReadReviewData("", category.value!!, "", page.value!!, limit.value!!, "")
         viewModelScope.launch {
             downloadReviewListRepository.downloadReviewList(readReviewData = readReviewData,
                 onResponse = {

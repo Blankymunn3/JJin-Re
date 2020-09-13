@@ -1,10 +1,14 @@
 package io.kim_kong.jjin_re.adapter
 
 import android.annotation.SuppressLint
+import android.opengl.GLES30
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView
 import com.makeramen.roundedimageview.RoundedImageView
 import com.willy.ratingbar.RotationRatingBar
@@ -21,13 +25,23 @@ object CustomBindingAdapter {
         }
     }
 
+    @BindingAdapter("app:editProfileImage", requireAll = false)
+    @JvmStatic
+    fun editProfileImage(view: ImageView, imgUri: String?) {
+        imgUri?.let {
+            Glide.with(view.context).load(it)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .override((GLES30.GL_MAX_TEXTURE_SIZE * 0.4).toInt(), (GLES30.GL_MAX_TEXTURE_SIZE * 0.4).toInt())
+                .transition(DrawableTransitionOptions.withCrossFade()).placeholder(R.drawable.ic_profile_default).into(view)
+        }
+    }
+
     @SuppressLint("SimpleDateFormat")
     @BindingAdapter("app:dateFormatSetText")
     @JvmStatic
     fun dateFormatSetText(view: OutlineTextView, date: String?) {
         date?.let {
             val changeDate = date.replace("T", " ").replace("Z", "").replace(".000", "")
-
             view.text = changeDate
         }
     }

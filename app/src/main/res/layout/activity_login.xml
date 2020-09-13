@@ -228,6 +228,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edt_login_radius"
+                    android:onClick="onLoginGoogleClick"
                     app:layout_constraintEnd_toStartOf="@+id/layout_login_with_kakao"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

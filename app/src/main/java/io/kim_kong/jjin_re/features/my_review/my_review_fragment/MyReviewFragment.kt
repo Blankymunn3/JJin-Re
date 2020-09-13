@@ -1,4 +1,4 @@
-package io.kim_kong.jjin_re.features.category.category_fragment
+package io.kim_kong.jjin_re.features.my_review.my_review_fragment
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -17,43 +17,45 @@ import com.bumptech.glide.RequestManager
 import io.kim_kong.jjin_re.R
 import io.kim_kong.jjin_re.adapter.ReviewItemRVAdapter
 import io.kim_kong.jjin_re.databinding.FragmentCategoryBinding
-import io.kim_kong.jjin_re.features.category.CategoryMainActivity
+import io.kim_kong.jjin_re.databinding.FragmentMyReviewBinding
+import io.kim_kong.jjin_re.features.category.category_fragment.CategoryFragment
+import io.kim_kong.jjin_re.features.category.category_fragment.CategoryFragment.Companion.EXTRA_CATEGORY_DATA
+import io.kim_kong.jjin_re.features.category.category_fragment.CategoryFragmentViewModel
+import io.kim_kong.jjin_re.features.my_review.MyReviewActivity
 import io.kim_kong.jjin_re.features.review_detail.ReviewDetailActivity
 import io.kim_kong.jjin_re.utils.*
 
-class CategoryFragment:Fragment() {
-    private lateinit var activity: CategoryMainActivity
-    private val viewModel by GetViewModel(CategoryFragmentViewModel::class.java)
+class MyReviewFragment : Fragment() {
+
+    private lateinit var activity: MyReviewActivity
+    private val viewModel by GetViewModel(MyReviewFragmentViewModel::class.java)
     private lateinit var requestManager: RequestManager
     private lateinit var linearSnapHelper: LinearSnapHelper
     private lateinit var reviewItemRVAdapter: ReviewItemRVAdapter
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        this.activity = context as CategoryMainActivity
+        this.activity = context as MyReviewActivity
     }
 
     companion object {
-        @JvmStatic
-        val EXTRA_CATEGORY_DATA = "EXTRA_CATEGORY_DATA"
-        @JvmStatic
-        fun newInstance(bundle: Bundle, category: String): CategoryFragment {
-            val fragment = CategoryFragment()
+        fun newInstance(bundle: Bundle, category: String): MyReviewFragment {
+            val fragment = MyReviewFragment()
             bundle.putString(EXTRA_CATEGORY_DATA, category)
             fragment.arguments = bundle
             return fragment
         }
         @JvmStatic
-        fun newInstance(): CategoryFragment = CategoryFragment()
+        fun newInstance(): MyReviewFragment = MyReviewFragment()
     }
 
     @SuppressLint("FragmentLiveDataObserve")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding = FragmentCategoryBinding.bind(LayoutInflater.from(context).inflate(R.layout.fragment_category, null, false))
+        val binding = FragmentMyReviewBinding.bind(LayoutInflater.from(context).inflate(R.layout.fragment_my_review, null, false))
         binding.rvReviewItem.showShimmerAdapter()
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-        requestManager = Glide.with(this@CategoryFragment)
+        requestManager = Glide.with(this@MyReviewFragment)
         viewModel.category.postValue(requireArguments().getString(EXTRA_CATEGORY_DATA))
         linearSnapHelper = SnapHelperOneByOne()
         val layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
@@ -76,12 +78,12 @@ class CategoryFragment:Fragment() {
             adapter = reviewItemRVAdapter
         }
 
-        viewModel.category.observe(this@CategoryFragment, {
+        viewModel.category.observe(this@MyReviewFragment, {
             if (!it.isNullOrEmpty())
                 viewModel.reviewListDownloadFromServer()
         })
 
-        viewModel.reviewList.observe(this@CategoryFragment, {
+        viewModel.reviewList.observe(this@MyReviewFragment, {
             binding.rvReviewItem.hideShimmerAdapter()
             if (viewModel.reviewList.value!!.size > 0) {
                 binding.tvReviewListEmpty.visibility = View.GONE
@@ -106,5 +108,4 @@ class CategoryFragment:Fragment() {
 
         return binding.root
     }
-
 }
