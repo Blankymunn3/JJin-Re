@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <data>
-
         <variable
             name="viewModel"
-            type="io.kim_kong.jjin_re.features.main.fragment.more.MoreViewModel" />
+            type="com.jjin_re.features.main.fragment.more.MoreViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorMainBack"
         android:paddingBottom="?attr/actionBarSize">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,12 +32,13 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
                 android:layout_marginEnd="5dp"
+                android:scaleType="centerCrop"
                 app:profileImage="@{viewModel.userModel.userImg}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/layout_fragment_more_user_info"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:riv_border_color="@color/colorGrayLine"
+                app:riv_border_color="@color/colorPrimary"
                 app:riv_border_width="3dp"
                 app:riv_corner_radius="50dp" />
 
@@ -67,6 +66,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+
 
                 <TextView
                     android:id="@+id/tv_fragment_more_user_id"
@@ -166,64 +167,87 @@
                 android:id="@+id/layout_fragment_more_notice"
                 style="@style/MoreFragmentLayout"
                 android:background="@drawable/login_edt_gray_bottom_line"
-                app:layout_constraintBottom_toTopOf="@+id/layout_fragment_more_event"
+                app:layout_constraintBottom_toTopOf="@+id/layout_fragment_more_alarm"
                 app:layout_constraintTop_toBottomOf="@+id/layout_fragment_more_profile"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
-                <TextView
-                    android:id="@+id/tv_fragment_more_notice"
-                    android:text="공지사항"
-                    style="@style/MoreFragmentTextView"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_fragment_more_notice_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     app:layout_constraintEnd_toStartOf="@+id/iv_fragment_more_notice"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <TextView
+                        android:id="@+id/tv_fragment_more_notice"
+                        android:text="공지사항&amp;이벤트"
+                        style="@style/MoreFragmentTextView"
+                        android:layout_width="wrap_content"
+                        app:layout_constraintEnd_toStartOf="@+id/iv_has_new_info"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <ImageView
+                        android:id="@+id/iv_has_new_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginBottom="3dp"
+                        android:src="@drawable/icon_new"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toEndOf="@+id/tv_fragment_more_notice"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <ImageView
                     android:id="@+id/iv_fragment_more_notice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_arr_next_black"
                     app:tint="@color/colorPrimary"
-                    app:layout_constraintStart_toEndOf="@+id/tv_fragment_more_notice"
+                    app:layout_constraintStart_toEndOf="@+id/layout_fragment_more_notice_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layout_fragment_more_event"
+                android:id="@+id/layout_fragment_more_alarm"
                 style="@style/MoreFragmentLayout"
                 android:background="@drawable/login_edt_gray_bottom_line"
-                app:layout_constraintBottom_toTopOf="@+id/layout_fragment_more_announcement"
                 app:layout_constraintTop_toBottomOf="@+id/layout_fragment_more_notice"
+                app:layout_constraintBottom_toTopOf="@+id/layout_fragment_more_announcement"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
                 <TextView
-                    android:id="@+id/tv_fragment_more_event"
-                    android:text="이벤트"
+                    android:id="@+id/tv_fragment_more_alarm"
+                    android:text="알람"
                     style="@style/MoreFragmentTextView"
-                    app:layout_constraintEnd_toStartOf="@+id/iv_fragment_more_event"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_fragment_more_alarm"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"/>
                 <ImageView
-                    android:id="@+id/iv_fragment_more_event"
+                    android:id="@+id/iv_fragment_more_alarm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_arr_next_black"
                     app:tint="@color/colorPrimary"
-                    app:layout_constraintStart_toEndOf="@+id/tv_fragment_more_event"
+                    app:layout_constraintStart_toEndOf="@+id/tv_fragment_more_alarm"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_fragment_more_announcement"
                 style="@style/MoreFragmentLayout"
                 android:background="@drawable/login_edt_gray_bottom_line"
-                app:layout_constraintTop_toBottomOf="@+id/layout_fragment_more_event"
-                app:layout_constraintBottom_toTopOf="@+id/layout_fragment_more_alarm"
+                app:layout_constraintTop_toBottomOf="@+id/layout_fragment_more_alarm"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
                 <TextView
@@ -246,32 +270,6 @@
                     app:layout_constraintBottom_toBottomOf="parent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layout_fragment_more_alarm"
-                style="@style/MoreFragmentLayout"
-                android:background="@drawable/login_edt_gray_bottom_line"
-                app:layout_constraintTop_toBottomOf="@+id/layout_fragment_more_announcement"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
-                <TextView
-                    android:id="@+id/tv_fragment_more_alarm"
-                    android:text="알람"
-                    style="@style/MoreFragmentTextView"
-                    app:layout_constraintEnd_toStartOf="@+id/iv_fragment_more_alarm"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
-                <ImageView
-                    android:id="@+id/iv_fragment_more_alarm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_arr_next_black"
-                    app:tint="@color/colorPrimary"
-                    app:layout_constraintStart_toEndOf="@+id/tv_fragment_more_alarm"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

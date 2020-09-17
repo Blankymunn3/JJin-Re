@@ -1,10 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Main -->
-    <string name="app_name">찐리 - 진짜리뷰들</string>
+    <string name="app_name">찐리</string>
+    <string name="app_title">찐리 - 진짜 구매자들의 진짜 리뷰</string>
     <string name="str_submit">확인</string>
     <string name="str_home_fragment_title">당신이 원하는 제품\n실구매자의 리뷰를 확인해보세요!</string>
     <string name="str_search_title">제품명으로 리뷰를 검색해보세요!</string>
     <string name="str_week_best_review">베스트 리뷰</string>
+
+    <string name="str_edit_profile_save">저장</string>
 
     <!-- Sign Up -->
     <string name="str_sign_up_title">회원가입</string>
@@ -19,8 +22,7 @@
     <string name="str_sign_up_all_consent">전체동의</string>
     <string name="str_sign_up_use_consent">이용약관 (필수)</string>
     <string name="str_sign_up_use_user_info">개인정보 수집 및 이용 (필수)</string>
-    <string name="str_sign_up_email_receiving">이메일 수신동의</string>
-    <string name="str_sign_up_sms_receiving">SMS 수신동의</string>
+    <string name="str_sign_up_push_receiving">푸쉬 수신동의</string>
     <string name="str_sign_up_content">내용보기</string>
 
     <!-- Category -->

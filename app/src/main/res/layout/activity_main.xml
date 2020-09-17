@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="io.kim_kong.jjin_re.features.main.MainViewModel" />
+            type="com.jjin_re.features.main.MainViewModel" />
     </data>
 
 
@@ -18,15 +18,65 @@
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/ab_main"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
+            android:layout_height="wrap_content"
+            android:background="@color/colorMainBack"
+            app:elevation="0dp">
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/tb_main"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:title="@string/app_name"
-                app:titleTextColor="@color/colorWhite" />
+                android:layout_height="wrap_content"
+                android:background="@color/colorMainBack"
+                app:layout_scrollFlags="snap|scroll">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_main_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Jjin-Re"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:paddingTop="5dp"
+                        android:gravity="center_vertical"
+                        android:fontFamily="@font/amarillo"
+                        android:textColor="@color/colorPrimary"
+                        app:layout_constraintEnd_toStartOf="@+id/iv_main_notifications"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+                    <ImageView
+                        android:id="@+id/iv_main_notifications"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_notifications"
+                        app:tint="@color/colorPrimary"
+                        android:padding="20dp"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toEndOf="@+id/tv_main_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/tv_notification_cnt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/new_alone_bg"
+                        android:gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="10dp"
+                        android:text="1"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="10sp"
+                        android:visibility="gone"
+                        app:layout_constraintDimensionRatio="1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
-        <io.kim_kong.jjin_re.utils.NonSwipeViewPager
+        <com.jjin_re.utils.NonSwipeViewPager
             android:id="@+id/vp_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -45,7 +95,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <io.kim_kong.jjin_re.utils.CustomBottomNavigationView
+                <com.jjin_re.utils.CustomBottomNavigationView
                     android:id="@+id/bottom_navigation_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

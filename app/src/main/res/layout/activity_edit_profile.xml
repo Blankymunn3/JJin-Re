@@ -2,9 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+        <import type="android.view.View" />
+        <variable
+            name="isVisible"
+            type="java.lang.Boolean" />
         <variable
             name="viewModel"
-            type="io.kim_kong.jjin_re.features.edit_profile.EditProfileViewModel" />
+            type="com.jjin_re.features.edit_profile.EditProfileViewModel" />
     </data>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -17,7 +21,7 @@
                 android:id="@+id/tb_edit_profile"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:title="@string/app_name"
+                app:title="@string/str_person_edit_profile"
                 app:titleTextColor="@color/colorWhite"
                 app:navigationIcon="@drawable/ic_arr_back_white"/>
         </com.google.android.material.appbar.AppBarLayout>
@@ -53,6 +57,7 @@
                     app:rlRoundTopLeft="true"
                     app:rlRoundTopRight="true"
                     app:rlRoundedCornerRadius="50dp"
+                    android:onClick="onClickProfileImageChange"
                     app:layout_constraintBottom_toTopOf="@+id/layout_edit_profile_bottom"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +67,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        app:editProfileImage="@{viewModel.userModel.userImg}"
+                        app:editProfileImage="@{viewModel.userImg}"
                         android:background="@color/Transparent"
                         android:src="@drawable/ic_profile_default" />
                     <TextView
@@ -99,38 +104,39 @@
                         android:layout_marginTop="20dp"
                         android:text="@string/str_sign_up_name"
                         android:textColor="@color/colorPrimary"/>
-                    <EditText
-                        android:id="@+id/et_edit_profile_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@={viewModel.userModel.nickName}"
-                        android:background="@drawable/login_edt_gray_bottom_line"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:layout_marginTop="20dp"
-                        android:text="@string/str_sign_up_pw"
-                        android:textColor="@color/colorPrimary"/>
-                    <EditText
-                        android:id="@+id/et_edit_profile_pw"
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/login_edt_gray_bottom_line"/>
+                        android:background="@drawable/login_edt_gray_bottom_line">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:layout_marginTop="20dp"
-                        android:text="@string/str_sign_up_pw_crm"
-                        android:textColor="@color/colorPrimary"/>
-                    <EditText
-                        android:id="@+id/et_edit_profile_pw_crm"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/login_edt_gray_bottom_line"/>
+                        <EditText
+                            android:id="@+id/et_edit_profile_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:fontFamily="@font/notosanskr_regular"
+                            android:includeFontPadding="false"
+                            android:inputType="textAutoComplete"
+                            android:letterSpacing="-0.05"
+                            android:singleLine="true"
+                            android:textColor="#222222"
+                            android:textSize="14sp"
+                            android:text="@={viewModel.userNickName}"/>
+
+                        <ImageButton
+                            android:id="@+id/del_edt_name"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="14dp"
+                            android:background="@color/Transparent"
+                            android:onClick="onClickDeleteEditText"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_edt_delete"
+                            android:visibility="gone" />
+                    </RelativeLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -139,12 +145,128 @@
                         android:layout_marginTop="20dp"
                         android:text="@string/str_sign_up_phone"
                         android:textColor="@color/colorPrimary"/>
-                    <EditText
-                        android:id="@+id/et_edit_profile_phone"
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@={viewModel.userModel.phone}"
-                        android:background="@drawable/login_edt_gray_bottom_line"/>
+                        android:background="@drawable/login_edt_gray_bottom_line">
+
+                        <EditText
+                            android:id="@+id/et_edit_profile_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:fontFamily="@font/notosanskr_regular"
+                            android:includeFontPadding="false"
+                            android:inputType="phone"
+                            android:letterSpacing="-0.05"
+                            android:maxLength="11"
+                            android:singleLine="true"
+                            android:textColor="#222222"
+                            android:textSize="14sp"
+                            android:text="@={viewModel.userPhone}"/>
+
+                        <ImageButton
+                            android:id="@+id/del_edt_phone"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="14dp"
+                            android:background="@color/Transparent"
+                            android:onClick="onClickDeleteEditText"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_edt_delete"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/str_sign_up_pw"
+                        android:textColor="@color/colorPrimary"
+                        android:visibility="@{isVisible? View.VISIBLE : View.GONE}"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/login_edt_gray_bottom_line"
+                        android:visibility="@{isVisible? View.VISIBLE : View.GONE}">
+
+                        <EditText
+                            android:id="@+id/et_edit_profile_pw"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:fontFamily="@font/notosanskr_regular"
+                            android:includeFontPadding="false"
+                            android:inputType="textPassword"
+                            android:letterSpacing="-0.05"
+                            android:singleLine="true"
+                            android:textColor="#222222"
+                            android:textSize="14sp"
+                            android:text="@={viewModel.userPW}"/>
+
+                        <ImageButton
+                            android:id="@+id/del_edt_pw"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="14dp"
+                            android:background="@color/Transparent"
+                            android:onClick="onClickDeleteEditText"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_edt_delete"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/str_sign_up_pw_crm"
+                        android:textColor="@color/colorPrimary"
+                        android:visibility="@{isVisible? View.VISIBLE : View.GONE}"/>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/login_edt_gray_bottom_line"
+                        android:visibility="@{isVisible? View.VISIBLE : View.GONE}">
+
+                        <EditText
+                            android:id="@+id/et_edit_profile_pw_crm"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:fontFamily="@font/notosanskr_regular"
+                            android:includeFontPadding="false"
+                            android:inputType="textPassword"
+                            android:letterSpacing="-0.05"
+                            android:singleLine="true"
+                            android:textColor="#222222"
+                            android:textSize="14sp"
+                            android:text="@={viewModel.userPwConFirm}"/>
+
+                        <ImageButton
+                            android:id="@+id/del_edt_pw_confirm"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="14dp"
+                            android:background="@color/Transparent"
+                            android:onClick="onClickDeleteEditText"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_edt_delete"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
@@ -160,10 +282,11 @@
             android:foreground="?android:attr/selectableItemBackground"
             android:includeFontPadding="false"
             android:letterSpacing="-0.05"
-            android:text="@string/str_sign_up_title"
+            android:text="@string/str_edit_profile_save"
             android:textColor="@color/colorBlack"
             android:textSize="14sp"
             android:textStyle="bold"
+            android:onClick="@{() -> viewModel.sendProfileImage()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

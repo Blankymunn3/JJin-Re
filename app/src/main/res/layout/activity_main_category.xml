@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="io.kim_kong.jjin_re.features.category.CategoryViewModel" />
+            type="com.jjin_re.features.category.CategoryViewModel" />
     </data>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -17,8 +17,9 @@
                 android:id="@+id/tb_category_main"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:title="@string/app_name"
-                app:titleTextColor="@color/colorWhite" />
+                app:title="@string/app_title"
+                app:titleTextColor="@color/colorWhite"
+                app:layout_scrollFlags="scroll|enterAlways|snap"/>
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_category_main"
                 android:layout_width="match_parent"

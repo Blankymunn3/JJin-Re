@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="io.kim_kong.jjin_re.features.search.SearchViewModel" />
+            type="com.jjin_re.features.search.SearchViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

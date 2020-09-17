@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="io.kim_kong.jjin_re.features.main.fragment.home.HomeViewModel" />
+            type="com.jjin_re.features.main.fragment.home.HomeViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -249,7 +249,6 @@
                                     android:id="@+id/iv_home_category_beauty"
                                     style="@style/CategoryImageView"
                                     android:src="@drawable/ic_beauty"
-                                    app:tint="@color/colorWhite"
                                     app:layout_constraintBottom_toTopOf="@+id/tv_home_category_beauty"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -315,7 +314,7 @@
                                 <ImageView
                                     android:id="@+id/iv_home_category_clothing"
                                     style="@style/CategoryImageView"
-                                    android:src="@drawable/ic_logout"
+                                    android:src="@drawable/ic_clothing"
                                     app:layout_constraintBottom_toTopOf="@+id/tv_home_category_clothing"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"

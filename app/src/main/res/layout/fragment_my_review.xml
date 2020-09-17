@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewModel"
-            type="io.kim_kong.jjin_re.features.my_review.my_review_fragment.MyReviewFragmentViewModel" />
+            type="com.jjin_re.features.my_review.my_review_fragment.MyReviewFragmentViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewModel"
-            type="io.kim_kong.jjin_re.features.splash.SplashViewModel" />
+            type="com.jjin_re.features.splash.SplashViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/layout_slash"
@@ -15,7 +15,10 @@
         android:id="@+id/tv_splash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hellonmhkkjkw!"
+        android:text="스플래쉬 화면임둥"
+        android:textSize="40sp"
+        android:textColor="@color/colorBlack"
+        android:fontFamily="@font/nanumbarungothic_bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/menu_add_review"
         android:title="추가"
-        android:icon="@drawable/ic_add_circle"
+        android:icon="@drawable/ic_add"
         app:tint="@color/colorWhite"
         app:showAsAction="always" />
 </menu>

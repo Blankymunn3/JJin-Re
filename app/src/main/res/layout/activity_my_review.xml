@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="io.kim_kong.jjin_re.features.my_review.MyReviewViewModel" />
+            type="com.jjin_re.features.my_review.MyReviewViewModel" />
     </data>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
                 android:id="@+id/tb_my_review"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:title="@string/app_name"
+                app:title="@string/app_title"
                 app:titleTextColor="@color/colorWhite" />
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_my_review_main"
