@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Main -->
     <string name="app_name">찐리</string>
-    <string name="app_title">찐리 - 진짜 구매자들의 진짜 리뷰</string>
+    <string name="app_title">찐리 - 진짜 구매자들의 찐 리뷰</string>
     <string name="str_submit">확인</string>
     <string name="str_home_fragment_title">당신이 원하는 제품\n실구매자의 리뷰를 확인해보세요!</string>
     <string name="str_search_title">제품명으로 리뷰를 검색해보세요!</string>
@@ -84,6 +84,7 @@
     <string name="str_setting_user_info_handling">개인정보 취급방침</string>
     <string name="str_setting_open_source_licenses">오픈소스 라이선스</string>
     <string name="str_setting_company_introduction">회사소개</string>
+    <string name="inquire_email">i30649303@gmail.com</string>
 
     <!-- Main -->
     <string name="open">열기</string>

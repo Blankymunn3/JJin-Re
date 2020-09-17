@@ -11,14 +11,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_splash"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="스플래쉬 화면임둥"
-        android:textSize="40sp"
-        android:textColor="@color/colorBlack"
-        android:fontFamily="@font/nanumbarungothic_bold"
+    <ImageView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:src="@drawable/splash"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

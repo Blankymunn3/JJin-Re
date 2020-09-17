@@ -55,4 +55,8 @@ data class ReviewModel(
     @SerializedName("created_at")
     @Expose
     var createdAt: String
-)
+) {
+    override fun equals(other: Any?): Boolean {
+        return super.equals(other)
+    }
+}

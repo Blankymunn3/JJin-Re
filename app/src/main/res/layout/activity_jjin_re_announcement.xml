@@ -68,6 +68,8 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/edt_gray_bottom_line"
                     android:padding="20dp"
+                    android:onClick="onToInquireClick"
+                    android:foreground="?android:selectableItemBackground"
                     app:layout_constraintTop_toBottomOf="@+id/layout_version_info"
                     app:layout_constraintBottom_toTopOf="@+id/layout_terms_of_use"
                     app:layout_constraintStart_toStartOf="parent"

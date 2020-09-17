@@ -43,7 +43,6 @@ interface JJinReAPI {
     @POST("/review/photo_upload")
     fun postImage(@Part image: ArrayList<MultipartBody.Part>, @Part("img") name: ArrayList<RequestBody>): Call<PhotoUploadResponse>
 
-
     @Multipart
     @POST("/user/profile_upload")
     fun profileUpload(@Part image: MultipartBody.Part, @Part("img") name: RequestBody): Call<DefaultResponse>
@@ -60,4 +59,12 @@ interface JJinReAPI {
     @POST("/review/review_cnt")
     fun downloadReviewCnt(@Query("user_id") userID: String): Call<DefaultResponse>
 
+    @POST("/review/my_thumb")
+    fun reviewMyThumb(@Query("user_id") userID: String, @Query("uid") uid: String): Call<DefaultResponse>
+
+    @POST("/review/thumb_up")
+    fun reviewThumbUp(@Query("user_id") userID: String, @Query("uid") uid: String): Call<DownloadReviewListResponse>
+
+    @POST("/review/thumb_down")
+    fun reviewThumbDown(@Query("user_id") userID: String, @Query("uid") uid: String): Call<DownloadReviewListResponse>
 }

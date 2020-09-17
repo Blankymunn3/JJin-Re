@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.opengl.GLES30
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -42,6 +44,20 @@ object CustomBindingAdapter {
         date?.let {
             val changeDate = it.replace("T", " ").replace("Z", "").replace(".000", "")
             view.text = changeDate
+        }
+    }
+
+    @BindingAdapter("setReviewMyThumbType")
+    @JvmStatic
+    fun setReviewMyThumbType(view: ImageView, type: String?) {
+        type?.let {
+            if (type == "0") {
+                if (view.id == R.id.iv_review_detail_thumb_up) view.setColorFilter(ContextCompat.getColor(view.context, R.color.colorAccent), android.graphics.PorterDuff.Mode.MULTIPLY)
+                else view.setColorFilter(ContextCompat.getColor(view.context, R.color.colorGray), android.graphics.PorterDuff.Mode.MULTIPLY)
+            } else {
+                if (view.id == R.id.iv_review_detail_thumb_down) view.setColorFilter(ContextCompat.getColor(view.context, R.color.colorAccent), android.graphics.PorterDuff.Mode.MULTIPLY)
+                else view.setColorFilter(ContextCompat.getColor(view.context, R.color.colorGray), android.graphics.PorterDuff.Mode.MULTIPLY)
+            }
         }
     }
 

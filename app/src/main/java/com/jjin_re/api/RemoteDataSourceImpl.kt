@@ -314,5 +314,68 @@ class RemoteDataSourceImpl: RemoteDataSource {
         })
     }
 
+    override fun reviewMyThumb(
+        userID: String,
+        uid: String,
+        onResponse: (Response<DefaultResponse>) -> Unit,
+        onFailure: (Throwable) -> Unit
+    ) {
+        jJinReAPI.reviewMyThumb(userID, uid).enqueue(object : Callback<DefaultResponse> {
+            override fun onResponse(
+                call: Call<DefaultResponse>,
+                response: Response<DefaultResponse>
+            ) {
+                onResponse(response)
+            }
+
+            override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
+                onFailure(t)
+            }
+
+        })
+    }
+
+    override fun reviewThumbUp(
+        userID: String,
+        uid: String,
+        onResponse: (Response<DownloadReviewListResponse>) -> Unit,
+        onFailure: (Throwable) -> Unit
+    ) {
+        jJinReAPI.reviewThumbUp(userID, uid).enqueue(object : Callback<DownloadReviewListResponse> {
+            override fun onResponse(
+                call: Call<DownloadReviewListResponse>,
+                response: Response<DownloadReviewListResponse>
+            ) {
+                onResponse(response)
+            }
+
+            override fun onFailure(call: Call<DownloadReviewListResponse>, t: Throwable) {
+                onFailure(t)
+            }
+
+        })
+    }
+
+    override fun reviewThumbDown(
+        userID: String,
+        uid: String,
+        onResponse: (Response<DownloadReviewListResponse>) -> Unit,
+        onFailure: (Throwable) -> Unit
+    ) {
+        jJinReAPI.reviewThumbDown(userID, uid).enqueue(object : Callback<DownloadReviewListResponse> {
+            override fun onResponse(
+                call: Call<DownloadReviewListResponse>,
+                response: Response<DownloadReviewListResponse>
+            ) {
+                onResponse(response)
+            }
+
+            override fun onFailure(call: Call<DownloadReviewListResponse>, t: Throwable) {
+                onFailure(t)
+            }
+
+        })
+    }
+
 
 }

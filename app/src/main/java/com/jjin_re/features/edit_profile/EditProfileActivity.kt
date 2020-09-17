@@ -144,6 +144,10 @@ class EditProfileActivity: BaseActivity() {
                 }
             }
         })
+
+        viewModel.userImg.observe(this@EditProfileActivity, {
+            if (!it.isNullOrEmpty() && it != BaseApplication.userModel.userImg) viewModel.isSaveButtonEnabled.postValue(true)
+        })
     }
 
     fun onClickDeleteEditText(view: View) {

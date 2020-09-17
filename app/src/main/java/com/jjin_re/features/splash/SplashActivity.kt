@@ -64,7 +64,7 @@ class SplashActivity : BaseActivity() {
             } catch (e: NullPointerException) {
                 e.printStackTrace()
             }
-            delay(500)
+            delay(1500)
             doLaunchApp()
         }
 

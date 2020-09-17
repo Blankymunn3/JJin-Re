@@ -110,4 +110,25 @@ interface RemoteDataSource {
         onResponse: (Response<DefaultResponse>) -> Unit,
         onFailure: (Throwable) -> Unit
     )
+
+    fun reviewMyThumb(
+        userID: String,
+        uid: String,
+        onResponse: (Response<DefaultResponse>) -> Unit,
+        onFailure: (Throwable) -> Unit
+    )
+
+    fun reviewThumbUp(
+        userID: String,
+        uid: String,
+        onResponse: (Response<DownloadReviewListResponse>) -> Unit,
+        onFailure: (Throwable) -> Unit
+    )
+
+    fun reviewThumbDown(
+        userID: String,
+        uid: String,
+        onResponse: (Response<DownloadReviewListResponse>) -> Unit,
+        onFailure: (Throwable) -> Unit
+    )
 }

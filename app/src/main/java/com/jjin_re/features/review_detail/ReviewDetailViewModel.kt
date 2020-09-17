@@ -17,6 +17,8 @@ class ReviewDetailViewModel: ViewModel() {
     val urlArr: MutableLiveData<List<String>> = MutableLiveData(emptyList())
     val uId = MutableLiveData("")
 
+    val myThumbType = MutableLiveData("")
+
     fun getReviewDetailDataFromServer() {
         readReviewData = ReadReviewData("", "", uId.value!!)
         viewModelScope.launch {
@@ -33,6 +35,55 @@ class ReviewDetailViewModel: ViewModel() {
             onFailure = {
                 it.printStackTrace()
             })
+        }
+    }
+
+    fun getReviewMyThumb() {
+        viewModelScope.launch {
+            downloadReviewListRepository.reviewMyThumb(userID = BaseApplication.userModel.userId,
+            uid = uId.value!!,
+            onResponse = {
+                if (it.isSuccessful && it.body()!!.code == "200") {
+                    myThumbType.postValue(it.body()!!.data)
+                }
+            },
+            onFailure = {
+                it.printStackTrace()
+            })
+        }
+    }
+
+    fun reviewThumbUpClick() {
+        viewModelScope.launch {
+            downloadReviewListRepository.reviewThumbUpAndThumbUp(userID = BaseApplication.userModel.userId,
+            uid = uId.value!!,
+            onResponse = {
+                it.body()?.let {body ->
+                    urlArr.postValue(body.data[0].imgUrl.split("[@]"))
+                    responseBody.postValue(body.data[0])
+                    responseMessage.postValue(body.message)
+                }
+            },
+            onFailure = {
+                it.printStackTrace()
+            })
+        }
+    }
+
+    fun reviewThumbDownClick() {
+        viewModelScope.launch {
+            downloadReviewListRepository.reviewThumbUpAndThumbDown(userID = BaseApplication.userModel.userId,
+                uid = uId.value!!,
+                onResponse = {
+                    it.body()?.let {body ->
+                        urlArr.postValue(body.data[0].imgUrl.split("[@]"))
+                        responseBody.postValue(body.data[0])
+                        responseMessage.postValue(body.message)
+                    }
+                },
+                onFailure = {
+                    it.printStackTrace()
+                })
         }
     }
 }

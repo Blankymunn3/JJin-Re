@@ -1,6 +1,8 @@
 package com.jjin_re.features.announcement
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import com.mikepenz.aboutlibraries.Libs
@@ -22,6 +24,16 @@ class AnnouncementActivity: BaseActivity() {
         binding.lifecycleOwner = this@AnnouncementActivity
         binding.viewModel = viewModel
 
+    }
+
+    fun onToInquireClick(view: View) {
+        intent = Intent(Intent.ACTION_SEND)
+        intent.type = "message/rfc822"
+        val address = arrayOf(getString(R.string.inquire_email))
+        intent.putExtra(Intent.EXTRA_EMAIL, address)
+        intent.putExtra(Intent.EXTRA_SUBJECT,  getString(R.string.app_name) + " : " + "문의하기")
+        intent.putExtra(Intent.EXTRA_TEXT, "\n\n\n\n\n\n아이디 : ${BaseApplication.userModel.userId}\n앱버전 : ${BaseApplication.appVersion} \nDevice : Android\nDevice Version : ${Build.VERSION.RELEASE}\nDevice Model : ${Build.MODEL}\n")
+        startActivity(intent)
     }
 
     fun onOpenSourceClick(view: View) {

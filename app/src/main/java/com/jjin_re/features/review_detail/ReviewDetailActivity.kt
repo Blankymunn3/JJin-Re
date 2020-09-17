@@ -110,12 +110,14 @@ class ReviewDetailActivity : BaseActivity() {
                 reviewThumbnailRVAdapter.setData(it as MutableList<String>)
                 val circleIndicator2 : CircleIndicator2 = binding.indicator
                 circleIndicator2.attachToRecyclerView(binding.rvReviewDetailThumbnail, snapHelper)
+                viewModel.getReviewMyThumb()
             }
         })
 
         viewModel.uId.observe(this@ReviewDetailActivity, {
             if (!it.isNullOrEmpty()) viewModel.getReviewDetailDataFromServer()
         })
+
 
         MobileAds.initialize(this@ReviewDetailActivity, getString(R.string.ad_mob_id))
         val adRequest = AdRequest.Builder().build()
@@ -126,17 +128,6 @@ class ReviewDetailActivity : BaseActivity() {
         val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
         MobileAds.setRequestConfiguration(configuration)
         */
-    }
-
-    fun onClickReviewThumbUpAndThumbDown(view: View) {
-        when (view.id) {
-            R.id.iv_review_detail_thumb_up -> {
-
-            }
-            R.id.iv_review_detail_thumb_down -> {
-
-            }
-        }
     }
 
     override fun onPause() {

@@ -1,5 +1,6 @@
 package com.jjin_re.repository
 
+import com.jjin_re.api.DefaultResponse
 import com.jjin_re.api.DownloadReviewListResponse
 import com.jjin_re.api.RemoteDataSource
 import com.jjin_re.api.RemoteDataSourceImpl
@@ -24,9 +25,30 @@ class DownloadReviewListRepository {
         remoteDataSource.downloadBestReviewList(readReviewData, onResponse, onFailure)
     }
 
-    fun reviewThumbUpAndThumbDown(
-
+    fun reviewMyThumb(
+        userID: String,
+        uid: String,
+        onResponse: (Response<DefaultResponse>) -> Unit,
+        onFailure: (Throwable) -> Unit
     ) {
+        remoteDataSource.reviewMyThumb(userID, uid, onResponse, onFailure)
+    }
 
+    fun reviewThumbUpAndThumbUp(
+        userID: String,
+        uid: String,
+        onResponse: (Response<DownloadReviewListResponse>) -> Unit,
+        onFailure: (Throwable) -> Unit
+    ) {
+        remoteDataSource.reviewThumbUp(userID, uid, onResponse, onFailure)
+    }
+
+    fun reviewThumbUpAndThumbDown(
+        userID: String,
+        uid: String,
+        onResponse: (Response<DownloadReviewListResponse>) -> Unit,
+        onFailure: (Throwable) -> Unit
+    ) {
+        remoteDataSource.reviewThumbDown(userID, uid, onResponse, onFailure)
     }
 }

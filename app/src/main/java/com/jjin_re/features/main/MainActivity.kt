@@ -102,6 +102,7 @@ class MainActivity : BaseActivity() {
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.menu_more -> {
+                    binding.abMain.setExpanded(true)
                     fragmentPosition = 2
                     binding.vpMain.setCurrentItem(2, false)
                     return@setOnNavigationItemSelectedListener true
