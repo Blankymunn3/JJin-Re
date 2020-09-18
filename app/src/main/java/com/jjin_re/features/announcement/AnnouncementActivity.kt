@@ -9,6 +9,8 @@ import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.LibsBuilder
 import com.jjin_re.R
 import com.jjin_re.databinding.ActivityJjinReAnnouncementBinding
+import com.jjin_re.features.web_view.WebViewActivity
+import com.jjin_re.features.web_view.WebViewViewModel
 import com.jjin_re.utils.*
 
 class AnnouncementActivity: BaseActivity() {
@@ -43,5 +45,22 @@ class AnnouncementActivity: BaseActivity() {
             .withAboutVersionShown(true)
             .withAboutDescription("<b>찐리와 함께 즐거운 시간 보내세요.</b>")
             .start(this@AnnouncementActivity)
+    }
+
+    fun onClickAnnouncement(view: View) {
+        var intent = Intent()
+        when (view.id) {
+            R.id.layout_terms_of_use -> {
+                intent = Intent(this@AnnouncementActivity, WebViewActivity::class.java)
+                intent.putExtra("EXTRA_WEB_VIEW_TITLE", "이용약관")
+                intent.putExtra("EXTRA_WEB_VIEW_URL", getString(R.string.str_terms_of_uses_url))
+            }
+            R.id.layout_privacy_policy -> {
+                intent = Intent(this@AnnouncementActivity, WebViewActivity::class.java)
+                intent.putExtra("EXTRA_WEB_VIEW_TITLE", "개인정보 취급방침")
+                intent.putExtra("EXTRA_WEB_VIEW_URL", getString(R.string.str_privacy_policy_url))
+            }
+        }
+        startActivity(intent)
     }
 }

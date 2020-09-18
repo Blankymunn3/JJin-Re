@@ -18,6 +18,7 @@ class SignUpViewModel : ViewModel() {
     val responseMessage = MutableLiveData("")
     private val idCheck = MutableLiveData(false)
     val phoneCheck = MutableLiveData(false)
+    val checkBox = MutableLiveData(false)
 
     val userID = MutableLiveData("")
     val userPW = MutableLiveData("")
@@ -25,9 +26,9 @@ class SignUpViewModel : ViewModel() {
     val userNickName = MutableLiveData("")
     val userPhone = MutableLiveData("")
 
-    val isSaveButtonEnabled = liveData.mediatorLiveData(userID, userPW, userPwConFirm, userNickName, userPhone, idCheck, phoneCheck) {
+    val isSaveButtonEnabled = liveData.mediatorLiveData(userID, userPW, userPwConFirm, userNickName, userPhone, idCheck, phoneCheck, checkBox) {
         !userID.value.isNullOrEmpty() && !userPW.value.isNullOrEmpty() && !userPwConFirm.value.isNullOrEmpty() && !userNickName.value.isNullOrEmpty()
-        !userPhone.value.isNullOrEmpty() && phoneCheck.value!! && idCheck.value!!
+        !userPhone.value.isNullOrEmpty() && phoneCheck.value!! && idCheck.value!! && checkBox.value!!
     }
 
     fun userIdCheck() {

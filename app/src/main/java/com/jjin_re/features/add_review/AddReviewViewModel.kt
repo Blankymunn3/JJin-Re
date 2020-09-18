@@ -43,7 +43,7 @@ class AddReviewViewModel : ViewModel() {
                     if (it.isSuccessful && it.body()!!.code == "200") {
                         var photoList = ""
                         for (i in it.body()!!.data.indices) {
-                            photoList += "https://be-at-home.s3.amazonaws.com/jjin-re/user/${it.body()!!.data[i]}"
+                            photoList += "https://be-at-home.s3.amazonaws.com/jjin-re/user/review/${it.body()!!.data[i]}"
                             if (i < it.body()!!.data.size - 1) {
                                 photoList += "[@]"
                             }

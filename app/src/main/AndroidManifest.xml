@@ -49,6 +49,7 @@
         <activity android:name=".features.my_review.MyReviewActivity"/>
         <activity android:name=".features.notice.NoticeActivity"/>
         <activity android:name=".features.announcement.AnnouncementActivity"/>
+        <activity android:name=".features.web_view.WebViewActivity"/>
     </application>
 
 </manifest>

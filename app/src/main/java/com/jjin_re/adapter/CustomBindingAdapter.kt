@@ -2,6 +2,9 @@ package com.jjin_re.adapter
 
 import android.annotation.SuppressLint
 import android.opengl.GLES30
+import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -54,7 +57,7 @@ object CustomBindingAdapter {
             if (type == "0") {
                 if (view.id == R.id.iv_review_detail_thumb_up) view.setColorFilter(ContextCompat.getColor(view.context, R.color.colorAccent), android.graphics.PorterDuff.Mode.MULTIPLY)
                 else view.setColorFilter(ContextCompat.getColor(view.context, R.color.colorGray), android.graphics.PorterDuff.Mode.MULTIPLY)
-            } else {
+            } else if (type == "1") {
                 if (view.id == R.id.iv_review_detail_thumb_down) view.setColorFilter(ContextCompat.getColor(view.context, R.color.colorAccent), android.graphics.PorterDuff.Mode.MULTIPLY)
                 else view.setColorFilter(ContextCompat.getColor(view.context, R.color.colorGray), android.graphics.PorterDuff.Mode.MULTIPLY)
             }
@@ -80,5 +83,26 @@ object CustomBindingAdapter {
     fun setRecyclerItem(view: ShimmerRecyclerView, list: MutableList<String>) {
         val recyclerViewAdapter = ReviewThumbnailRVAdapter(Glide.with(view.context))
         recyclerViewAdapter.setData(list)
+    }
+
+    @SuppressLint("SetJavaScriptEnabled")
+    @BindingAdapter("setWebView")
+    @JvmStatic
+    fun setWebView(view: WebView, url: String?) {
+        url?.let {
+            view.webViewClient = object : WebViewClient() {
+                override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+                    view?.loadUrl(url!!)
+                    return true
+                }
+            }
+            view.loadUrl(it)
+            view.settings.setSupportZoom(true)
+            view.settings.defaultZoom = WebSettings.ZoomDensity.FAR
+            view.settings.javaScriptEnabled = true
+            view.settings.useWideViewPort = true
+            view.settings.loadWithOverviewMode = true
+            view.settings.domStorageEnabled = true
+        }
     }
 }

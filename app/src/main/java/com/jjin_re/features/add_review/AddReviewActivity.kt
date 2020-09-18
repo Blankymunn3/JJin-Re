@@ -83,12 +83,9 @@ open class AddReviewActivity: BaseActivity() {
         })
 
         binding.ratingAddReview.setOnRatingChangeListener { _, rating, _ ->
-            viewModel.addReviewProductRating.postValue(rating.toString())
+            viewModel.addReviewProductRating.postValue("$rating / 5.0")
         }
 
-        viewModel.addReviewProductRating.observe(this@AddReviewActivity, {
-            binding.tvAddReviewProductRating.text = "$it/5.0"
-        })
         viewModel.postPhotoList.observe(this@AddReviewActivity, {
             binding.tvAddReviewPhotoCount.text = "${it.size}/10"
             addReviewPhotoRVAdapter.setData(it)

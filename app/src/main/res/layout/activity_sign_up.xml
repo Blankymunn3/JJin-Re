@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/btn_signup_next">
+            app:layout_constraintBottom_toTopOf="@+id/btn_signup">
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
@@ -319,6 +319,225 @@
 
                         </RelativeLayout>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:id="@+id/btn_agree_all"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="4dp"
+                                android:paddingBottom="4dp">
+
+                                <ImageButton
+                                    android:id="@+id/iv_agree_all"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_alignParentStart="true"
+                                    android:background="@color/Transparent"
+                                    android:scaleType="fitXY"
+                                    android:onClick="onClickCheckBox"
+                                    android:src="@drawable/sign_up_check_box_selector"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="20dp"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_toEndOf="@+id/iv_agree_all"
+                                    android:focusable="false"
+                                    android:fontFamily="@font/nanumbarungothic_bold"
+                                    android:gravity="center_vertical"
+                                    android:text="전체동의"
+                                    android:textColor="#666666"
+                                    android:textSize="12dp" />
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="24dp"
+                                android:paddingTop="2dp"
+                                android:paddingBottom="2dp">
+
+                                <RelativeLayout
+                                    android:id="@+id/btn_agree_1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="20dp"
+                                    android:layout_alignParentStart="true">
+
+                                    <ImageButton
+                                        android:id="@+id/iv_agree_1"
+                                        android:layout_width="20dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_alignParentStart="true"
+                                        android:layout_centerVertical="true"
+                                        android:background="@color/Transparent"
+                                        android:scaleType="fitXY"
+                                        android:onClick="onClickCheckBox"
+                                        android:src="@drawable/sign_up_check_box_selector" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginStart="8dp"
+                                        android:layout_toEndOf="@+id/iv_agree_1"
+                                        android:focusable="false"
+                                        android:fontFamily="@font/notosanskr_regular"
+                                        android:gravity="center_vertical"
+                                        android:includeFontPadding="false"
+                                        android:letterSpacing="-0.05"
+                                        android:text="이용약관 (필수)"
+                                        android:textColor="#666666"
+                                        android:textSize="12sp" />
+
+                                </RelativeLayout>
+
+                                <TextView
+                                    android:id="@+id/btn_agree_2_content"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:background="@color/Transparent"
+                                    android:fontFamily="@font/nanumbarungothic"
+                                    android:text="내용보기"
+                                    android:onClick="agreementClick"
+                                    android:textAlignment="textEnd"
+                                    android:textColor="@color/colorWhite"
+                                    android:textSize="12sp"/>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="24dp"
+                                android:paddingTop="2dp"
+                                android:paddingBottom="2dp">
+
+                                <RelativeLayout
+                                    android:id="@+id/btn_agree_2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="20dp"
+                                    android:layout_alignParentStart="true">
+
+                                    <ImageButton
+                                        android:id="@+id/iv_agree_2"
+                                        android:layout_width="20dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_centerVertical="true"
+                                        android:background="@color/ted_image_picker_camera_background"
+                                        android:scaleType="fitXY"
+                                        android:onClick="onClickCheckBox"
+                                        android:src="@drawable/sign_up_check_box_selector"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginStart="8dp"
+                                        android:layout_toEndOf="@+id/iv_agree_2"
+                                        android:focusableInTouchMode="false"
+                                        android:fontFamily="@font/notosanskr_regular"
+                                        android:foreground="?android:attr/selectableItemBackground"
+                                        android:gravity="center_vertical"
+                                        android:includeFontPadding="false"
+                                        android:letterSpacing="-0.05"
+                                        android:text="개인정보 수집 및 이용 (필수)"
+                                        android:textColor="#666666"
+                                        android:textSize="12dp"
+                                        android:textStyle="normal" />
+
+                                </RelativeLayout>
+
+                                <TextView
+                                    android:id="@+id/btn_agree_3_content"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="20dp"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:background="@color/Transparent"
+                                    android:focusableInTouchMode="false"
+                                    android:fontFamily="@font/notosanskr_regular"
+                                    android:foreground="?android:attr/selectableItemBackground"
+                                    android:includeFontPadding="false"
+                                    android:letterSpacing="-0.05"
+                                    android:text="내용보기"
+                                    android:onClick="agreementClick"
+                                    android:textAlignment="textEnd"
+                                    android:textColor="@color/colorWhite"
+                                    android:textSize="12sp"/>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/btn_agree_3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="24dp"
+                                android:orientation="horizontal"
+                                android:paddingTop="2dp"
+                                android:paddingBottom="2dp">
+
+                                <ImageButton
+                                    android:id="@+id/iv_agree_3"
+                                    android:layout_width="20dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_centerVertical="true"
+                                    android:background="@color/Transparent"
+                                    android:focusable="false"
+                                    android:scaleType="fitXY"
+                                    android:onClick="onClickCheckBox"
+                                    android:src="@drawable/sign_up_check_box_selector"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_toEndOf="@+id/iv_agree_3"
+                                    android:fontFamily="@font/notosanskr_regular"
+                                    android:includeFontPadding="false"
+                                    android:letterSpacing="-0.05"
+                                    android:text="마케팅 푸쉬 동의"
+                                    android:textColor="#666666"
+                                    android:textSize="12sp"
+                                    android:textStyle="normal" />
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/btn_agree_4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="24dp"
+                                android:orientation="horizontal"
+                                android:paddingTop="2dp"
+                                android:paddingBottom="2dp">
+
+                                <ImageButton
+                                    android:id="@+id/iv_agree_4"
+                                    android:layout_width="20dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/Transparent"
+                                    android:scaleType="fitXY"
+                                    android:onClick="onClickCheckBox"
+                                    android:src="@drawable/sign_up_check_box_selector"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_toEndOf="@+id/iv_agree_4"
+                                    android:focusableInTouchMode="false"
+                                    android:fontFamily="@font/notosanskr_regular"
+                                    android:includeFontPadding="false"
+                                    android:letterSpacing="-0.05"
+                                    android:text="이벤트 푸쉬 동의"
+                                    android:textColor="#666666"
+                                    android:textSize="12sp"
+                                    android:textStyle="normal" />
+                            </RelativeLayout>
+
+                        </LinearLayout>
                     </LinearLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -327,7 +546,7 @@
 
 
         <Button
-            android:id="@+id/btn_signup_next"
+            android:id="@+id/btn_signup"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -1,7 +1,10 @@
 package com.jjin_re.features.signup
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.gun0912.tedpermission.util.ObjectUtils
 import com.jjin_re.databinding.ActivitySignUpBinding
 import com.jjin_re.utils.GetViewModel
@@ -9,6 +12,7 @@ import com.jjin_re.utils.SharedPreferenceHelper
 import com.jjin_re.features.main.MainActivity
 import com.jjin_re.R
 import com.jjin_re.features.login.LoginActivity
+import com.jjin_re.features.web_view.WebViewActivity
 import com.jjin_re.model.UserModel
 import com.jjin_re.utils.BaseActivity
 import com.jjin_re.utils.Utils
@@ -31,7 +35,7 @@ class SignUpActivity : BaseActivity() {
         binding.isVisibled = true
 
         viewModel.isSaveButtonEnabled.observe(this@SignUpActivity) {
-            binding.btnSignupNext.isEnabled = it
+            binding.btnSignup.isEnabled = it
         }
 
         viewModel.successLoginCommand.observe(this@SignUpActivity) {
@@ -65,7 +69,7 @@ class SignUpActivity : BaseActivity() {
                     val pattern: Pattern = Pattern.compile("([0-9]{3})([0-9]{4})([0-9]{4})")
                     matcher = pattern.matcher(binding.etSignupPhone.text.toString())
                     if (!matcher.matches()) {
-                        Utils.showSnackBar("전화번호 형식으로 입력해주세요.", binding.root, true)
+                        Utils.showSnackBar("전화번호 형식으로 입력해주세요.", binding.layoutSignUpMain, true)
                         viewModel.phoneCheck.value = false
                     } else {
                         viewModel.phoneCheck.value = true
@@ -77,6 +81,45 @@ class SignUpActivity : BaseActivity() {
                     }
                 }
             }
+    }
+    fun onClickCheckBox(view: View) {
+        when (view.id) {
+            R.id.iv_agree_all -> {
+                if (binding.ivAgreeAll.isSelected) {
+                    binding.ivAgree1.isSelected = false
+                    binding.ivAgree2.isSelected = false
+                    binding.ivAgree3.isSelected = false
+                    binding.ivAgree4.isSelected = false
+                    binding.ivAgreeAll.isSelected = false
+                } else {
+                    binding.ivAgree1.isSelected = true
+                    binding.ivAgree2.isSelected = true
+                    binding.ivAgree3.isSelected = true
+                    binding.ivAgree4.isSelected = true
+                    binding.ivAgreeAll.isSelected = true
+                    viewModel.checkBox.postValue(true)
+                }
+            }
+            else -> view.isSelected = !view.isSelected
+        }
+        viewModel.checkBox.postValue(binding.ivAgree1.isSelected && binding.ivAgree2.isSelected)
+    }
+
+    fun agreementClick(view: View) {
+        when (view.id) {
+            R.id.btn_agree_2_content -> {
+                val intent = Intent(this@SignUpActivity, WebViewActivity::class.java)
+                intent.putExtra("EXTRA_WEB_VIEW_TITLE", "이용약관")
+                intent.putExtra("EXTRA_WEB_VIEW_URL", getString(R.string.str_terms_of_uses_url))
+                startActivity(intent)
+            }
+            R.id.btn_agree_3_content -> {
+                val intent = Intent(this@SignUpActivity, WebViewActivity::class.java)
+                intent.putExtra("EXTRA_WEB_VIEW_TITLE", "개인정보 취급방침")
+                intent.putExtra("EXTRA_WEB_VIEW_URL", getString(R.string.str_privacy_policy_url))
+                startActivity(intent)
+            }
+        }
     }
 
     fun onClickDeleteEditTextContent(view: View) {
@@ -102,21 +145,3 @@ class SignUpActivity : BaseActivity() {
         actList.remove(this@SignUpActivity)
     }
 }
-
-/*
-
-        binding.etSignupEmail.onFocusChangeListener =
-            View.OnFocusChangeListener { _, hasFocus ->
-                if (!hasFocus) {
-                    val pattern: Pattern =
-                        Pattern.compile("^[0-9a-zA-Z][0-9a-zA-Z_\\-.+]+[0-9a-zA-Z]@[0-9a-zA-Z][0-9a-zA-Z_\\-]*[0-9a-zA-Z](\\.[a-zA-Z]{2,6}){1,2}\$")
-                    matcher = pattern.matcher(binding.etSignupEmail.text.toString())
-                    if (!matcher.matches()) {
-                        Utils.showToast("이메일 형식으로 입력해주세요.", this@SignUpActivity)
-                        viewModel.emailCheck.value = false
-                    } else {
-                        viewModel.emailCheck.value = true
-                    }
-                }
-            }
-*/

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.viewpager.widget.ViewPager
+import com.google.android.gms.ads.*
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.messaging.FirebaseMessaging
 import com.jjin_re.R
@@ -21,12 +22,16 @@ import com.jjin_re.utils.RevealAnimation.Companion.EXTRA_CIRCULAR_REVEAL_X
 import com.jjin_re.utils.RevealAnimation.Companion.EXTRA_CIRCULAR_REVEAL_Y
 import org.json.JSONObject
 import java.util.*
+import kotlin.system.exitProcess
 
 
 class MainActivity : BaseActivity() {
     private val binding by binding<ActivityMainBinding>(R.layout.activity_main)
     val viewModel by GetViewModel(MainViewModel::class.java)
+    private lateinit var interstitialAd: InterstitialAd
     private var fragmentPosition: Int = 0
+
+    private var backKeyPressedTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +48,12 @@ class MainActivity : BaseActivity() {
         viewModel.userToken.observe(this@MainActivity, {
             if (!it.isNullOrEmpty()) viewModel.userTokenChange()
         })
+
+        val adRequest: AdRequest = AdRequest.Builder().build()
+        interstitialAd = InterstitialAd(this@MainActivity)
+        interstitialAd.adUnitId =  getString(R.string.ad_mob_front)
+        interstitialAd.loadAd(adRequest)
+
     }
 
     private fun presentActivity(view: View) {
@@ -172,8 +183,23 @@ class MainActivity : BaseActivity() {
         if (fragmentPosition != 0) {
             binding.vpMain.setCurrentItem(0, false)
         } else {
-            super.onBackPressed()
+            if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+                backKeyPressedTime = System.currentTimeMillis()
+                Utils.showSnackBar("한번 더 누르면 앱이 종료됩니다.", binding.root, false)
+            } else {
+                if (interstitialAd.isLoaded) {
+                    interstitialAd.show()
+                    interstitialAd.adListener = object : AdListener() {
+                        override fun onAdClosed() {
+                            finish()
+                            exitProcess(0)
+                        }
+                    }
+                } else {
+                    finish()
+                    exitProcess(0)
+                }
+            }
         }
-
     }
 }
