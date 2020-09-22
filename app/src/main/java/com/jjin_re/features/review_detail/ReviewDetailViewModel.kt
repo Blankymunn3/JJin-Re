@@ -13,7 +13,8 @@ class ReviewDetailViewModel: ViewModel() {
     private lateinit var readReviewData: ReadReviewData
     private val downloadReviewListRepository = DownloadReviewListRepository()
     val responseBody: MutableLiveData<ReviewModel> = MutableLiveData()
-    private val responseMessage = MutableLiveData("")
+    val responseMessage = MutableLiveData("")
+    val responseCode = MutableLiveData("")
     val urlArr: MutableLiveData<List<String>> = MutableLiveData(emptyList())
     val uId = MutableLiveData("")
 
@@ -84,6 +85,22 @@ class ReviewDetailViewModel: ViewModel() {
                 onFailure = {
                     it.printStackTrace()
                 })
+        }
+    }
+
+    fun removeReview() {
+        viewModelScope.launch {
+            downloadReviewListRepository.removeReview(uid = uId.value!!,
+            userID = BaseApplication.userModel.userId,
+            onResponse = {
+                if (it.isSuccessful && it.body()!!.code == "200") {
+                    responseCode.postValue(it.body()!!.code)
+                    responseMessage.postValue(it.body()!!.message)
+                }
+            },
+            onFailure = {
+                it.printStackTrace()
+            })
         }
     }
 }

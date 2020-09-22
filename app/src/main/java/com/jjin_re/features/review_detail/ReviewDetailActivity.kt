@@ -1,11 +1,13 @@
 package com.jjin_re.features.review_detail
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.opengl.GLES30
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
@@ -16,6 +18,7 @@ import com.stfalcon.imageviewer.StfalconImageViewer
 import com.jjin_re.R
 import com.jjin_re.adapter.ReviewThumbnailRVAdapter
 import com.jjin_re.databinding.ActivityReviewDetailBinding
+import com.jjin_re.features.edit_review.EditReviewActivity
 import com.jjin_re.utils.*
 import com.jjin_re.utils.Extra.EXTRA_REVIEW_UID
 import me.relex.circleindicator.CircleIndicator2
@@ -25,9 +28,36 @@ class ReviewDetailActivity : BaseActivity() {
     val binding by binding<ActivityReviewDetailBinding>(R.layout.activity_review_detail)
     val viewModel by GetViewModel(ReviewDetailViewModel::class.java)
     private lateinit var reviewThumbnailRVAdapter: ReviewThumbnailRVAdapter
-    private lateinit var snapHelper :SnapHelperOneByOne
+    private lateinit var snapHelper: SnapHelperOneByOne
+    private lateinit var modifiedItem: MenuItem
+    private lateinit var removeItem: MenuItem
 
-    lateinit var requestManager : RequestManager
+    lateinit var requestManager: RequestManager
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.menu_review, menu)
+        modifiedItem = menu.findItem(R.id.menu_modified)
+        removeItem = menu.findItem(R.id.menu_remove)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_modified -> {
+                val intent = Intent(this@ReviewDetailActivity, EditReviewActivity::class.java)
+                intent.putExtra("EXTRA_REVIEW", viewModel.responseBody.value)
+                ActivityCompat.startActivity(this@ReviewDetailActivity, intent, null)
+                true
+            }
+            R.id.menu_remove -> {
+                viewModel.removeReview()
+                true
+            }
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +65,7 @@ class ReviewDetailActivity : BaseActivity() {
         binding.lifecycleOwner = this@ReviewDetailActivity
         binding.viewModel = viewModel
 
+        setSupportActionBar(binding.tbReviewDetail)
 
         binding.adViewReviewDetail.adListener = object : AdListener() {
             override fun onAdLoaded() {
@@ -105,6 +136,16 @@ class ReviewDetailActivity : BaseActivity() {
 
         })
 
+        viewModel.responseBody.observe(this@ReviewDetailActivity, {
+            if (BaseApplication.userModel.userId == it.userId) {
+                removeItem.isVisible = true
+                modifiedItem.isVisible = true
+            } else {
+                removeItem.isVisible = false
+                modifiedItem.isVisible = false
+            }
+        })
+
         viewModel.urlArr.observe(this@ReviewDetailActivity, {
             if (it.isNotEmpty()) {
                 reviewThumbnailRVAdapter.setData(it as MutableList<String>)
@@ -118,6 +159,12 @@ class ReviewDetailActivity : BaseActivity() {
             if (!it.isNullOrEmpty()) viewModel.getReviewDetailDataFromServer()
         })
 
+        viewModel.responseCode.observe(this@ReviewDetailActivity, {
+            if (it.isNotEmpty() && it == "200") {
+                Utils.showToast(viewModel.responseMessage.value!!, this@ReviewDetailActivity)
+                finish()
+            }
+        })
 
         MobileAds.initialize(this@ReviewDetailActivity, getString(R.string.ad_mob_id))
         val adRequest = AdRequest.Builder().build()

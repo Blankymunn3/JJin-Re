@@ -1,9 +1,6 @@
 package com.jjin_re.api
 
-import com.jjin_re.data.LoginData
-import com.jjin_re.data.PushData
-import com.jjin_re.data.ReadReviewData
-import com.jjin_re.data.WriteReviewData
+import com.jjin_re.data.*
 import com.jjin_re.model.UserModel
 import com.jjin_re.repository.DownloadReviewListRepository
 import okhttp3.MultipartBody
@@ -75,8 +72,28 @@ interface RemoteDataSource {
         onFailure: (Throwable) -> Unit
     )
 
+    fun photoOneUploadRepo(
+        @Part image: ArrayList<MultipartBody.Part>,
+        @Part("img") name: ArrayList<RequestBody>,
+        onResponse: (Response<DefaultResponse>) -> Unit,
+        onFailure: (Throwable) -> Unit
+    )
+
     fun writeReviewRepo(
         writeReviewData: WriteReviewData,
+        onResponse: (Response<DefaultResponse>) -> Unit,
+        onFailure: (Throwable) -> Unit
+    )
+
+    fun editReviewRepo(
+        writeReviewData: EditReviewData,
+        onResponse: (Response<DefaultResponse>) -> Unit,
+        onFailure: (Throwable) -> Unit
+    )
+
+    fun removeReviewRepo(
+        @Query("uid") uid: String,
+        @Query("user_id") userID: String,
         onResponse: (Response<DefaultResponse>) -> Unit,
         onFailure: (Throwable) -> Unit
     )

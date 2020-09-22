@@ -19,4 +19,13 @@ class PhotoUploadRepository {
         remoteDataSource.photoUploadRepo(image, name, onResponse, onFailure)
     }
 
+    fun photoOneUpload(
+        image: ArrayList<MultipartBody.Part>,
+        name: ArrayList<RequestBody>,
+        onResponse: (Response<DefaultResponse>) -> Unit,
+        onFailure: (Throwable) -> Unit
+    ) {
+        remoteDataSource.photoOneUploadRepo(image, name, onResponse, onFailure)
+    }
+
 }

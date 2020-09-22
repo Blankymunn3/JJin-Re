@@ -1,12 +1,15 @@
 package com.jjin_re.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.jjin_re.databinding.RecyclerItemReviewBinding
 import com.jjin_re.model.ReviewModel
+import com.jjin_re.utils.BaseApplication
+import com.jjin_re.utils.DiffCallback
 import com.jjin_re.utils.Photo
 
 class ReviewItemRVAdapter(private val requestManager: RequestManager, var list: List<ReviewModel> = emptyList()): RecyclerView.Adapter<ReviewItemRVAdapter.ViewHolder>() {
@@ -27,20 +30,6 @@ class ReviewItemRVAdapter(private val requestManager: RequestManager, var list: 
         val diffResult = DiffUtil.calculateDiff(DiffCallback(this.list, newData))
         this.list = newData
         diffResult.dispatchUpdatesTo(this@ReviewItemRVAdapter)
-    }
-
-    class DiffCallback(private val oldData: List<ReviewModel>, private val newData: List<ReviewModel>) : DiffUtil.Callback() {
-
-        override fun getOldListSize() = oldData.size
-
-        override fun getNewListSize() = newData.size
-
-        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            return oldData[oldItemPosition] == newData[newItemPosition]
-        }
-
-        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) =
-            oldData[oldItemPosition] == newData[newItemPosition]
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

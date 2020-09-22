@@ -3,7 +3,7 @@ package com.jjin_re.utils
 import android.graphics.Bitmap
 
 class Photo(
-    var photo: Bitmap,
+    var photo: Bitmap?,
     var isClickable: Boolean,
     var isDelActive: Boolean
 ){

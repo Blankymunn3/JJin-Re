@@ -2,6 +2,7 @@ package com.jjin_re.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class ReviewModel(
     @SerializedName("uid")
@@ -55,7 +56,7 @@ data class ReviewModel(
     @SerializedName("created_at")
     @Expose
     var createdAt: String
-) {
+) : Serializable {
     override fun equals(other: Any?): Boolean {
         return super.equals(other)
     }

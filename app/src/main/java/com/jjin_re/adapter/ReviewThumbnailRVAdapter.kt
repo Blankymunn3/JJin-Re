@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.jjin_re.R
 import com.jjin_re.databinding.RecyclerItemReviewThumbnailBinding
+import com.jjin_re.utils.DiffCallback
 
 
 class ReviewThumbnailRVAdapter(
@@ -34,20 +35,6 @@ class ReviewThumbnailRVAdapter(
         val diffResult = DiffUtil.calculateDiff(DiffCallback(this.reviewThumbnailList, newData))
         this.reviewThumbnailList = newData
         diffResult.dispatchUpdatesTo(this@ReviewThumbnailRVAdapter)
-    }
-
-    class DiffCallback(private val oldData: List<String>, private val newData: List<String>) : DiffUtil.Callback() {
-
-        override fun getOldListSize() = oldData.size
-
-        override fun getNewListSize() = newData.size
-
-        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            return oldData[oldItemPosition] == newData[newItemPosition]
-        }
-
-        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) =
-            oldData[oldItemPosition] == newData[newItemPosition]
     }
 
 

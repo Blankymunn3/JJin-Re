@@ -111,7 +111,7 @@ class SplashActivity : BaseActivity() {
             for (signature in info.signatures) {
                 val md : MessageDigest = MessageDigest.getInstance("SHA")
                 md.update(signature.toByteArray())
-                val something = String(Base64.encode(md.digest(), 0))
+                val something = String(Base64.encode(md.digest(), Base64.NO_WRAP))
                 Log.e("Hash Key :::", something)
             }
         } catch (e: Exception) {

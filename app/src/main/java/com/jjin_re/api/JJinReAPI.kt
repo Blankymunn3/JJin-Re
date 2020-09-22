@@ -1,9 +1,6 @@
 package com.jjin_re.api
 
-import com.jjin_re.data.LoginData
-import com.jjin_re.data.PushData
-import com.jjin_re.data.ReadReviewData
-import com.jjin_re.data.WriteReviewData
+import com.jjin_re.data.*
 import com.jjin_re.model.AdBannerModel
 import com.jjin_re.model.UserModel
 import okhttp3.MultipartBody
@@ -44,11 +41,21 @@ interface JJinReAPI {
     fun postImage(@Part image: ArrayList<MultipartBody.Part>, @Part("img") name: ArrayList<RequestBody>): Call<PhotoUploadResponse>
 
     @Multipart
+    @POST("/review/photo_upload")
+    fun postOneImage(@Part image: ArrayList<MultipartBody.Part>, @Part("img") name: ArrayList<RequestBody>): Call<DefaultResponse>
+
+    @Multipart
     @POST("/user/profile_upload")
     fun profileUpload(@Part image: MultipartBody.Part, @Part("img") name: RequestBody): Call<DefaultResponse>
 
     @POST("/review/review_write")
     fun writeReview(@Body writeReviewData: WriteReviewData): Call<DefaultResponse>
+
+    @POST("/review/review_edit")
+    fun editReview(@Body editReviewData: EditReviewData): Call<DefaultResponse>
+
+    @POST
+    fun removeReview(@Query("uid") uid: String, @Query("user_id") userID: String): Call<DefaultResponse>
 
     @POST("/review/review_list")
     fun downloadReviewList(@Body readReviewData: ReadReviewData): Call<DownloadReviewListResponse>

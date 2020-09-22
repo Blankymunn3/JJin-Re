@@ -12,6 +12,7 @@ import com.jjin_re.utils.Photo
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import java.io.Serializable
 
 class AddReviewViewModel : ViewModel() {
     private val writeReviewRepository = WriteReviewRepository()
@@ -31,7 +32,7 @@ class AddReviewViewModel : ViewModel() {
     val addReviewProductName = MutableLiveData("")
     val addReviewCategory = MutableLiveData("")
     val addReviewEtcCategory = MutableLiveData("")
-    val addReviewProductRating = MutableLiveData("0.0/5.0")
+    val addReviewProductRating = MutableLiveData("0.0")
     val addReviewContents = MutableLiveData("")
     val addReviewPhotoList = MutableLiveData("")
 

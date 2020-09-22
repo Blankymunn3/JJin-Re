@@ -1,9 +1,6 @@
 package com.jjin_re.api
 
-import com.jjin_re.data.LoginData
-import com.jjin_re.data.PushData
-import com.jjin_re.data.ReadReviewData
-import com.jjin_re.data.WriteReviewData
+import com.jjin_re.data.*
 import com.jjin_re.model.AdBannerModel
 import com.jjin_re.model.UserModel
 import com.jjin_re.repository.DownloadReviewListRepository
@@ -197,6 +194,24 @@ class RemoteDataSourceImpl: RemoteDataSource {
         })
     }
 
+    override fun photoOneUploadRepo(
+        image: ArrayList<MultipartBody.Part>,
+        name: ArrayList<RequestBody>,
+        onResponse: (Response<DefaultResponse>) -> Unit,
+        onFailure: (Throwable) -> Unit
+    ) {
+        jJinReAPI.postOneImage(image, name).enqueue(object : Callback<DefaultResponse> {
+            override fun onResponse(call: Call<DefaultResponse>, response: Response<DefaultResponse>) {
+                onResponse(response)
+            }
+
+            override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
+                onFailure(t)
+
+            }
+        })
+    }
+
     override fun writeReviewRepo(
         writeReviewData: WriteReviewData,
         onResponse: (Response<DefaultResponse>) -> Unit,
@@ -204,6 +219,44 @@ class RemoteDataSourceImpl: RemoteDataSource {
     ) {
         jJinReAPI.writeReview(writeReviewData).enqueue(object : Callback<DefaultResponse> {
             override fun onResponse(call: Call<DefaultResponse>, response: Response<DefaultResponse>) {
+                onResponse(response)
+            }
+
+            override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
+                onFailure(t)
+            }
+
+        })
+    }
+
+    override fun editReviewRepo(
+        writeReviewData: EditReviewData,
+        onResponse: (Response<DefaultResponse>) -> Unit,
+        onFailure: (Throwable) -> Unit
+    ) {
+        jJinReAPI.editReview(writeReviewData).enqueue(object : Callback<DefaultResponse> {
+            override fun onResponse(call: Call<DefaultResponse>, response: Response<DefaultResponse>) {
+                onResponse(response)
+            }
+
+            override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
+                onFailure(t)
+            }
+
+        })
+    }
+
+    override fun removeReviewRepo(
+        uid: String,
+        userID: String,
+        onResponse: (Response<DefaultResponse>) -> Unit,
+        onFailure: (Throwable) -> Unit
+    ) {
+        jJinReAPI.removeReview(uid, userID).enqueue(object: Callback<DefaultResponse> {
+            override fun onResponse(
+                call: Call<DefaultResponse>,
+                response: Response<DefaultResponse>
+            ) {
                 onResponse(response)
             }
 

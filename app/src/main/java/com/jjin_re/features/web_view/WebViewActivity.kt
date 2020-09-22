@@ -13,12 +13,20 @@ class WebViewActivity: BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        actList.add(this@WebViewActivity)
         setSupportActionBar(binding.tbWebView)
         Utils.setIconTintDark(this@WebViewActivity, true)
         binding.lifecycleOwner = this@WebViewActivity
         binding.viewModel = viewModel
-
+        binding.tbWebView.setNavigationOnClickListener {
+            finish()
+        }
         viewModel.webViewTitle.postValue(intent.getStringExtra("EXTRA_WEB_VIEW_TITLE"))
         viewModel.webViewUrl.postValue(intent.getStringExtra("EXTRA_WEB_VIEW_URL"))
+    }
+
+    override fun onPause() {
+        super.onPause()
+        actList.remove(this@WebViewActivity)
     }
 }

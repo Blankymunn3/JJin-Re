@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
@@ -16,8 +17,10 @@ import com.bumptech.glide.RequestManager
 import com.jjin_re.R
 import com.jjin_re.adapter.ReviewItemRVAdapter
 import com.jjin_re.databinding.FragmentHomeBinding
+import com.jjin_re.features.edit_review.EditReviewActivity
 import com.jjin_re.features.main.MainActivity
 import com.jjin_re.features.review_detail.ReviewDetailActivity
+import com.jjin_re.model.ReviewModel
 import com.jjin_re.utils.*
 import com.jjin_re.utils.Extra.EXTRA_REVIEW_UID
 import java.util.*

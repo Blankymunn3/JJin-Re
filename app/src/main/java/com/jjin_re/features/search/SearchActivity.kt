@@ -16,8 +16,10 @@ import com.jjin_re.R
 import com.jjin_re.adapter.FragmentAdapter
 import com.jjin_re.adapter.ReviewItemRVAdapter
 import com.jjin_re.databinding.ActivitySearchBinding
+import com.jjin_re.features.add_review.AddReviewActivity
 import com.jjin_re.features.category.category_fragment.CategoryFragment
 import com.jjin_re.features.review_detail.ReviewDetailActivity
+import com.jjin_re.model.ReviewModel
 import com.jjin_re.utils.*
 
 class SearchActivity:BaseActivity() {

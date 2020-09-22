@@ -25,6 +25,16 @@ class DownloadReviewListRepository {
         remoteDataSource.downloadBestReviewList(readReviewData, onResponse, onFailure)
     }
 
+
+    fun removeReview(
+        uid: String,
+        userID: String,
+        onResponse: (Response<DefaultResponse>) -> Unit,
+        onFailure: (Throwable) -> Unit
+    ) {
+        remoteDataSource.removeReviewRepo(uid, userID, onResponse, onFailure)
+    }
+
     fun reviewMyThumb(
         userID: String,
         uid: String,

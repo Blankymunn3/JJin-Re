@@ -17,8 +17,10 @@ import com.bumptech.glide.RequestManager
 import com.jjin_re.R
 import com.jjin_re.adapter.ReviewItemRVAdapter
 import com.jjin_re.databinding.FragmentCategoryBinding
+import com.jjin_re.features.add_review.AddReviewActivity
 import com.jjin_re.features.category.CategoryMainActivity
 import com.jjin_re.features.review_detail.ReviewDetailActivity
+import com.jjin_re.model.ReviewModel
 import com.jjin_re.utils.*
 
 class CategoryFragment:Fragment() {
