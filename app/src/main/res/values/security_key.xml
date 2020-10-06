@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ad_mob_id">ca-app-pub-7991644980520013~9538625310</string>
+    <string name="ad_mob_banner">ca-app-pub-7991644980520013/1234412275</string>
+    <string name="ad_mob_front">ca-app-pub-7991644980520013/1085807265</string>
+    <string name="kakao_native_app_key">c58a52b67d8a248a36747e3768a290d8</string>
+    <string name="naver_client_id">9qSruZl9xpj56jfbB8_w</string>
+    <string name="naver_client_secret">LAsCPFMBrM</string>
+</resources>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="com.jjin_re.features.alarm.AlarmsViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/tb_alarms"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                app:title="@string/str_settings_alarm_title"
+                app:titleTextColor="@color/colorWhite"
+                app:navigationIcon="@drawable/ic_arr_back_white"/>
+        </com.google.android.material.appbar.AppBarLayout>
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_event_push_change"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edt_gray_bottom_line"
+                    app:layout_constraintBottom_toTopOf="@+id/layout_marketing_push_change"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+                    <TextView
+                        android:id="@+id/tv_event_push_change"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:textSize="16sp"
+                        android:text="진리 이벤트 푸쉬"
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:textColor="@color/colorBlack"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        app:layout_constraintEnd_toStartOf="@+id/switch_event_push"
+                        app:layout_constraintBottom_toTopOf="@+id/tv_event_push_announcement"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/tv_event_push_announcement"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:text="진리 이벤트, 업데이트 소식을 받아보세요."
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/nanumbarungothic"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_event_push_change"
+                        app:layout_constraintEnd_toStartOf="@+id/switch_event_push"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switch_event_push"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="onSwitchClick"
+                        android:checked="@{viewModel.eventPush == 0? false : true, default = true}"
+                        app:layout_constraintStart_toEndOf="@+id/tv_event_push_change"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_marketing_push_change"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edt_gray_bottom_line"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_event_push_change"
+                    app:layout_constraintBottom_toTopOf="@+id/layout_review_push_change"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+                    <TextView
+                        android:id="@+id/tv_marketing_push_change"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:textSize="16sp"
+                        android:text="마케팅 푸쉬"
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:textColor="@color/colorBlack"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        app:layout_constraintEnd_toStartOf="@+id/switch_marketing_push"
+                        app:layout_constraintBottom_toTopOf="@+id/tv_marketing_push_announcement"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/tv_marketing_push_announcement"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:text="광고, 행사 등 소식을 받아보세요."
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/nanumbarungothic"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_marketing_push_change"
+                        app:layout_constraintEnd_toStartOf="@+id/switch_marketing_push"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switch_marketing_push"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="onSwitchClick"
+                        android:checked="@{viewModel.mktPush == 0? false: true, default = true}"
+                        app:layout_constraintStart_toEndOf="@+id/tv_marketing_push_change"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_review_push_change"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edt_gray_bottom_line"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_marketing_push_change"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+                    <TextView
+                        android:id="@+id/tv_review_push_change"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:textSize="16sp"
+                        android:text="리뷰 푸쉬"
+                        android:fontFamily="@font/nanumbarungothic"
+                        android:textColor="@color/colorBlack"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        app:layout_constraintEnd_toStartOf="@+id/switch_review_push"
+                        app:layout_constraintBottom_toTopOf="@+id/tv_review_push_announcement"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/tv_review_push_announcement"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:text="작성한 리뷰의 좋아요, 싫어요 알람를 받아보세요."
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/nanumbarungothic"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_review_push_change"
+                        app:layout_constraintEnd_toStartOf="@+id/switch_review_push"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switch_review_push"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="onSwitchClick"
+                        android:checked="@{viewModel.reviewPush == 0? false: true, default = true}"
+                        app:layout_constraintStart_toEndOf="@+id/tv_review_push_change"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "998242020557",
+    "firebase_url": "https://jjin-re.firebaseio.com",
+    "project_id": "jjin-re",
+    "storage_bucket": "jjin-re.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998242020557:android:192fbc93f47a4a0d088d84",
+        "android_client_info": {
+          "package_name": "com.jjin_re"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "998242020557-6a1o26e9avn5ldnt1or925eg5bkbc381.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jjin_re",
+            "certificate_hash": "09e8ac1805aff542a3d46210922be2b310b00596"
+          }
+        },
+        {
+          "client_id": "998242020557-ste0qtn2cd8r4b4thm1agareal14oggd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDJA01SgDWiYZHtZp3uvp9gKSF1Bsm3tU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "998242020557-ste0qtn2cd8r4b4thm1agareal14oggd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

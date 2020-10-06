@@ -1,0 +1,5 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/edt_active_bg" android:state_focused="true" android:state_window_focused="true" />
+    <item android:drawable="@drawable/person_textview_bottom_gray_line" android:state_focused="false" android:state_window_focused="false" />
+    <item android:drawable="@drawable/person_textview_bottom_gray_line" android:state_focused="false" android:state_window_focused="true" />
+</selector>

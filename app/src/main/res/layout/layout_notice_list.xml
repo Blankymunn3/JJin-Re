@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:background="@color/colorWhite"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tv_notice_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:text="@string/app_title"
+        android:textSize="15sp"
+        android:fontFamily="@font/notosanskr_bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/iv_has_new_info"
+        app:layout_constraintBottom_toTopOf="@+id/tv_notice_created_at"/>
+
+    <ImageView
+        android:id="@+id/iv_has_new_info"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="4dp"
+        android:src="@drawable/icon_new"
+        android:layout_marginBottom="5dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_notice_title"
+        app:layout_constraintBottom_toTopOf="@+id/tv_notice_created_at"/>
+    <TextView
+        android:id="@+id/tv_notice_created_at"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorGray"
+        android:textSize="12sp"
+        android:layout_marginTop="5dp"
+        android:visibility="gone"
+        android:fontFamily="@font/notosanskr_regular"
+        app:layout_constraintTop_toBottomOf="@+id/tv_notice_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

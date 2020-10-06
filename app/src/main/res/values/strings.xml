@@ -1,3 +1,97 @@
-<resources>
-    <string name="app_name">JJi-Re</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Main -->
+    <string name="app_name">찐리</string>
+    <string name="app_title">찐리 - 진짜 구매자들의 찐 리뷰</string>
+    <string name="str_submit">확인</string>
+    <string name="str_home_fragment_title">당신이 원하는 제품\n실구매자의 리뷰를 확인해보세요!</string>
+    <string name="str_search_title">제품명으로 리뷰를 검색해보세요!</string>
+    <string name="str_week_best_review">베스트 리뷰</string>
+
+    <string name="str_edit_profile_save">저장</string>
+
+    <!-- Sign Up -->
+    <string name="str_sign_up_title">회원가입</string>
+
+    <string name="str_sign_up_next">다음</string>
+    <string name="str_sign_up_name">닉네임</string>
+    <string name="str_sign_up_pw">비밀번호(영문, 숫자, 특수문자)</string>
+    <string name="str_sign_up_pw_crm">비밀번호 확인</string>
+    <string name="str_sign_up_email">이메일</string>
+    <string name="str_sign_up_area">지역</string>
+    <string name="str_sign_up_phone">전화번호</string>
+    <string name="str_sign_up_all_consent">전체동의</string>
+    <string name="str_sign_up_use_consent">이용약관 (필수)</string>
+    <string name="str_sign_up_use_user_info">개인정보 수집 및 이용 (필수)</string>
+    <string name="str_sign_up_push_receiving">푸쉬 수신동의</string>
+    <string name="str_sign_up_content">내용보기</string>
+
+    <!-- Category -->
+    <string name="str_category_all">전체</string>
+    <string name="str_category_furniture">가구/인테리어</string>
+    <string name="str_category_digital">디지털/가전</string>
+    <string name="str_category_pet">반려동물용품</string>
+    <string name="str_category_beauty">뷰티</string>
+    <string name="str_category_movie">영화/연극</string>
+    <string name="str_category_clothing">의류/잡화</string>
+    <string name="str_category_hobby">취미</string>
+    <string name="str_category_food">푸드</string>
+    <string name="str_category_etc">기타</string>
+    <string-array name="str_review_category">
+        <item>@string/str_category_all</item>
+        <item>@string/str_category_furniture</item>
+        <item>@string/str_category_digital</item>
+        <item>@string/str_category_pet</item>
+        <item>@string/str_category_beauty</item>
+        <item>@string/str_category_movie</item>
+        <item>@string/str_category_clothing</item>
+        <item>@string/str_category_hobby</item>
+        <item>@string/str_category_food</item>
+        <item>@string/str_category_etc</item>
+    </string-array>
+
+    <string name="str_add_review_hint">
+        해당 제품(컨텐츠)에 대해 리뷰 내용을 작성해주세요.\n
+        허위리뷰 혹은 비추천 3개 이상 받을 경우\n
+        해당 리뷰는 자동 삭제 처리 됩니다.
+    </string>
+
+    <!-- Log In -->
+    <string name="str_login_title">로그인</string>
+    <string name="str_login_id">아이디</string>
+    <string name="str_login_pw">비밀번호</string>
+
+    <!-- Bottom Menu -->
+    <string name="str_bottom_menu_home">홈</string>
+    <string name="str_bottom_menu_theme">테마</string>
+    <string name="str_bottom_menu_person">더보기</string>
+
+    <!-- menu -->
+    <string name="str_menu_added">추가</string>
+
+    <!-- Settings -->
+    <string name="str_logout">로그아웃</string>
+    <string name="str_person_setting">설정</string>
+    <string name="str_person_notice">공지사항</string>
+    <string name="str_person_event">이벤트</string>
+    <string name="str_person_inquire">문의하기</string>
+    <string name="str_person_edit_profile">프로필 설정</string>
+    <string name="str_settings_alarm_title">알람 설정</string>
+    <string name="str_setting_alarm">알림 설정 및 수신 동의</string>
+    <string name="str_setting_marketing_alarm">이벤트 및 마케팅 활용 동의</string>
+    <string name="str_setting_customer_support_title">고객지원</string>
+    <string name="str_setting_customer_app_version">버전 정보</string>
+    <string name="str_setting_terms_of_use">이용약관</string>
+    <string name="str_setting_user_info_handling">개인정보 취급방침</string>
+    <string name="str_setting_open_source_licenses">오픈소스 라이선스</string>
+    <string name="str_setting_company_introduction">회사소개</string>
+    <string name="inquire_email">i30649303@gmail.com</string>
+    <string name="str_terms_of_uses_url">http://www.jjin-re.com/termsofuses</string>
+    <string name="str_privacy_policy_url">http://www.jjin-re.com/privacypolicy</string>
+
+    <!-- Main -->
+    <string name="open">열기</string>
+    <string name="close">닫기</string>
+
+    <string name="str_jjin_re_play_store_url">https://play.google.com/store/apps/details?id=com.jjin_re</string>
+
 </resources>

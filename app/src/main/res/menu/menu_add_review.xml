@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/menu_add_review"
+        android:title="추가"
+        android:icon="@drawable/ic_add"
+        app:tint="@color/colorWhite"
+        app:showAsAction="always" />
+</menu>

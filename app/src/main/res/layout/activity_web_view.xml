@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.jjin_re.features.web_view.WebViewViewModel" />
+    </data>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/tb_web_view"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                app:title="@{viewModel.webViewTitle}"
+                app:titleTextColor="@color/colorWhite"
+                app:navigationIcon="@drawable/ic_arr_back_white"/>
+        </com.google.android.material.appbar.AppBarLayout>
+        <WebView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:setWebView="@{viewModel.webViewUrl}"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
