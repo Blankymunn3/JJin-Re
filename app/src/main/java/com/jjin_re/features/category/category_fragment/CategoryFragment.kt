@@ -59,7 +59,7 @@ class CategoryFragment:Fragment() {
         viewModel.category.postValue(requireArguments().getString(EXTRA_CATEGORY_DATA))
         linearSnapHelper = SnapHelperOneByOne()
         val layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
-
+        binding.fabCategoryPageUp.show()
         val scrollListener = object : EndlessRecyclerViewScrollListener(layoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
                 if (viewModel.reviewList.value!!.size >= 20) {
@@ -76,6 +76,10 @@ class CategoryFragment:Fragment() {
             isNestedScrollingEnabled = false
             this.layoutManager = layoutManager
             adapter = reviewItemRVAdapter
+        }
+
+        binding.fabCategoryPageUp.setOnClickListener {
+            binding.rvReviewItem.smoothScrollBy(0, 0)
         }
 
         viewModel.category.observe(this@CategoryFragment, {

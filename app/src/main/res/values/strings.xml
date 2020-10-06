@@ -92,5 +92,6 @@
     <string name="open">열기</string>
     <string name="close">닫기</string>
 
+    <string name="str_jjin_re_play_store_url">https://play.google.com/store/apps/details?id=com.jjin_re</string>
 
 </resources>

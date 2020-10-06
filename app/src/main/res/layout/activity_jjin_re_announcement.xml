@@ -34,6 +34,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/edt_gray_bottom_line"
                     android:padding="20dp"
+                    android:onClick="onClickAnnouncement"
                     app:layout_constraintBottom_toTopOf="@+id/layout_to_inquire"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

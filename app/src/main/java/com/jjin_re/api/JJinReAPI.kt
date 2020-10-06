@@ -54,7 +54,7 @@ interface JJinReAPI {
     @POST("/review/review_edit")
     fun editReview(@Body editReviewData: EditReviewData): Call<DefaultResponse>
 
-    @POST
+    @POST("/review/review_remove")
     fun removeReview(@Query("uid") uid: String, @Query("user_id") userID: String): Call<DefaultResponse>
 
     @POST("/review/review_list")
@@ -70,8 +70,8 @@ interface JJinReAPI {
     fun reviewMyThumb(@Query("user_id") userID: String, @Query("uid") uid: String): Call<DefaultResponse>
 
     @POST("/review/thumb_up")
-    fun reviewThumbUp(@Query("user_id") userID: String, @Query("uid") uid: String): Call<DownloadReviewListResponse>
+    fun reviewThumbUp(@Query("user_id") userID: String, @Query("uid") uid: String, @Query("user_name") userName: String): Call<DownloadReviewListResponse>
 
     @POST("/review/thumb_down")
-    fun reviewThumbDown(@Query("user_id") userID: String, @Query("uid") uid: String): Call<DownloadReviewListResponse>
+    fun reviewThumbDown(@Query("user_id") userID: String, @Query("uid") uid: String, @Query("user_name") userName: String): Call<DownloadReviewListResponse>
 }

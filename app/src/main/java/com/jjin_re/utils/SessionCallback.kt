@@ -49,11 +49,7 @@ class SessionCallback internal constructor(private val listener: LoginComplete) 
                                 email != null -> {
                                     userEmail = email
                                     Log.i("KAKAO_API", "email: $email")
-                                }
-                                kakaoAccount.emailNeedsAgreement() == OptionalBoolean.TRUE -> {
-                                    userEmail = email
-                                }
-                                else -> {
+                                } else -> {
                                     userEmail = "${userLoginType}_${result.id}"
                                 }
                             }

@@ -391,10 +391,11 @@ class RemoteDataSourceImpl: RemoteDataSource {
     override fun reviewThumbUp(
         userID: String,
         uid: String,
+        userName: String,
         onResponse: (Response<DownloadReviewListResponse>) -> Unit,
         onFailure: (Throwable) -> Unit
     ) {
-        jJinReAPI.reviewThumbUp(userID, uid).enqueue(object : Callback<DownloadReviewListResponse> {
+        jJinReAPI.reviewThumbUp(userID, uid, userName).enqueue(object : Callback<DownloadReviewListResponse> {
             override fun onResponse(
                 call: Call<DownloadReviewListResponse>,
                 response: Response<DownloadReviewListResponse>
@@ -412,10 +413,11 @@ class RemoteDataSourceImpl: RemoteDataSource {
     override fun reviewThumbDown(
         userID: String,
         uid: String,
+        userName: String,
         onResponse: (Response<DownloadReviewListResponse>) -> Unit,
         onFailure: (Throwable) -> Unit
     ) {
-        jJinReAPI.reviewThumbDown(userID, uid).enqueue(object : Callback<DownloadReviewListResponse> {
+        jJinReAPI.reviewThumbDown(userID, uid, userName).enqueue(object : Callback<DownloadReviewListResponse> {
             override fun onResponse(
                 call: Call<DownloadReviewListResponse>,
                 response: Response<DownloadReviewListResponse>

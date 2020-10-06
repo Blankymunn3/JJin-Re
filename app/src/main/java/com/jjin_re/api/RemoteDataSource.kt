@@ -138,6 +138,7 @@ interface RemoteDataSource {
     fun reviewThumbUp(
         userID: String,
         uid: String,
+        userName: String,
         onResponse: (Response<DownloadReviewListResponse>) -> Unit,
         onFailure: (Throwable) -> Unit
     )
@@ -145,6 +146,7 @@ interface RemoteDataSource {
     fun reviewThumbDown(
         userID: String,
         uid: String,
+        userName: String,
         onResponse: (Response<DownloadReviewListResponse>) -> Unit,
         onFailure: (Throwable) -> Unit
     )

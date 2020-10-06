@@ -12,7 +12,17 @@ import com.jjin_re.utils.DiffCallback
 
 
 class AdBannerRVAdapter(private val requestManager: RequestManager, var list :List<AdBannerModel> = emptyList()): RecyclerView.Adapter<AdBannerRVAdapter.ViewHolder>(){
-   class ViewHolder(val binding: RecyclerItemAdBannerBinding): RecyclerView.ViewHolder(binding.root)
+    private lateinit var itemClick: OnItemClick
+
+    interface OnItemClick {
+        fun itemClick(url: String)
+    }
+
+    fun setItemClick(onItemClick: OnItemClick) {
+        this.itemClick = onItemClick
+    }
+
+    class ViewHolder(val binding: RecyclerItemAdBannerBinding): RecyclerView.ViewHolder(binding.root)
 
     fun setData(newData: MutableList<AdBannerModel>) {
         val diffResult = DiffUtil.calculateDiff(
@@ -35,6 +45,9 @@ class AdBannerRVAdapter(private val requestManager: RequestManager, var list :Li
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         requestManager.load(list[position].imgUri).into(holder.binding.rivAdBanner)
         holder.binding.tvAdBannerCnt.text = "${position + 1} / ${list.size} +"
+        holder.binding.rivAdBanner.setOnClickListener {
+            itemClick.itemClick(list[position].url)
+        }
     }
 
     override fun getItemCount(): Int = list.size

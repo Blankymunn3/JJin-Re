@@ -30,7 +30,6 @@ class CategoryMainActivity: BaseActivity() {
         binding.vpCategoryMain.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(binding.tabCategoryMain))
         binding.tabCategoryMain.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
-
                 binding.vpCategoryMain.setCurrentItem(tab!!.position, true)
             }
 
@@ -49,7 +48,6 @@ class CategoryMainActivity: BaseActivity() {
 
         binding.tabCategoryMain.setScrollPosition(category, category.toFloat(), true)
         binding.vpCategoryMain.setCurrentItem(category, false)
-
     }
 
     override fun onPause() {

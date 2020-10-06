@@ -54,19 +54,30 @@
 
                 <TextView
                     android:id="@+id/tv_fragment_more_user_name"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:text="@{viewModel.userModel.nickName}"
                     android:textColor="@color/colorBlack"
-                    android:gravity="bottom"
                     android:textSize="18sp"
                     android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
                     android:fontFamily="@font/nanumbarungothic_bold"
                     app:layout_constraintBottom_toTopOf="@+id/tv_fragment_more_user_id"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_fragment_more_user_social"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/iv_fragment_more_user_social"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="5dp"
+                    app:userProfileSocialType="@{viewModel.userModel.socialType}"
+                    app:riv_corner_radius="20dp"
+                    app:layout_constraintStart_toEndOf="@+id/tv_fragment_more_user_name"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_fragment_more_user_id"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
 
                 <TextView

@@ -21,25 +21,20 @@ class AlarmsActivity: BaseActivity() {
         Utils.setIconTintDark(this@AlarmsActivity, true)
         binding.lifecycleOwner = this@AlarmsActivity
         binding.viewModel = viewModel
-        viewModel.mktPush.observe(this@AlarmsActivity, {
-            if (it == 0) {
-                FirebaseMessaging.getInstance().unsubscribeFromTopic("mkt_all")
-                FirebaseMessaging.getInstance().unsubscribeFromTopic("mkt_android")
-                FirebaseMessaging.getInstance().unsubscribeFromTopic("event_all")
-                FirebaseMessaging.getInstance().unsubscribeFromTopic("event_android")
-            } else {
-                FirebaseMessaging.getInstance().subscribeToTopic("mkt_all")
-                FirebaseMessaging.getInstance().subscribeToTopic("mkt_android")
-                FirebaseMessaging.getInstance().subscribeToTopic("event_all")
-                FirebaseMessaging.getInstance().subscribeToTopic("event_android")
-            }
-        })
         binding.tbAlarms.setNavigationOnClickListener {
             finish()
         }
 
         viewModel.eventPush.observe(this@AlarmsActivity, {
             viewModel.pushChange()
+            if (it == 0) {
+                FirebaseMessaging.getInstance().unsubscribeFromTopic("event_all")
+                FirebaseMessaging.getInstance().unsubscribeFromTopic("event_android")
+            } else {
+                FirebaseMessaging.getInstance().subscribeToTopic("event_all")
+                FirebaseMessaging.getInstance().subscribeToTopic("event_android")
+
+            }
         })
 
         viewModel.reviewPush.observe(this@AlarmsActivity, {
@@ -48,6 +43,13 @@ class AlarmsActivity: BaseActivity() {
 
         viewModel.mktPush.observe(this@AlarmsActivity, {
             viewModel.pushChange()
+            if (it == 0) {
+                FirebaseMessaging.getInstance().unsubscribeFromTopic("mkt_all")
+                FirebaseMessaging.getInstance().unsubscribeFromTopic("mkt_android")
+            } else {
+                FirebaseMessaging.getInstance().subscribeToTopic("mkt_all")
+                FirebaseMessaging.getInstance().subscribeToTopic("mkt_android")
+            }
         })
     }
 

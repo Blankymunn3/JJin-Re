@@ -47,18 +47,20 @@ class DownloadReviewListRepository {
     fun reviewThumbUpAndThumbUp(
         userID: String,
         uid: String,
+        userName: String,
         onResponse: (Response<DownloadReviewListResponse>) -> Unit,
         onFailure: (Throwable) -> Unit
     ) {
-        remoteDataSource.reviewThumbUp(userID, uid, onResponse, onFailure)
+        remoteDataSource.reviewThumbUp(userID, uid, userName, onResponse, onFailure)
     }
 
     fun reviewThumbUpAndThumbDown(
         userID: String,
         uid: String,
+        userName: String,
         onResponse: (Response<DownloadReviewListResponse>) -> Unit,
         onFailure: (Throwable) -> Unit
     ) {
-        remoteDataSource.reviewThumbDown(userID, uid, onResponse, onFailure)
+        remoteDataSource.reviewThumbDown(userID, uid, userName, onResponse, onFailure)
     }
 }

@@ -63,7 +63,7 @@ object Utils {
             val snackBar = Snackbar.make(view, message, Snackbar.LENGTH_SHORT)
             val snackBarView: View = snackBar.view
             val params = snackBarView.layoutParams as CoordinatorLayout.LayoutParams
-            params.gravity = Gravity.TOP
+            params.gravity = Gravity.CENTER
             snackBarView.layoutParams = params
             snackBar.show()
         } else {
@@ -75,7 +75,7 @@ object Utils {
             }
             val snackBarView: View = snackBar.view
             val params = snackBarView.layoutParams as CoordinatorLayout.LayoutParams
-            params.gravity = Gravity.TOP
+            params.gravity = Gravity.CENTER
             snackBarView.layoutParams = params
             snackBar.show()
         }

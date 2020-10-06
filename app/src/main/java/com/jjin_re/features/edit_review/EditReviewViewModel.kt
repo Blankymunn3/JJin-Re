@@ -41,41 +41,45 @@ class EditReviewViewModel: ViewModel() {
 
     fun sendFile() {
         viewModelScope.launch {
-            if (multipartList.value!!.size > 1) {
-                photoUploadResponse.photoUpload(image = multipartList.value!!,
-                    name = requestBody.value!!,
-                    onResponse = {
-                        if (it.isSuccessful && it.body()!!.code == "200") {
-                            var photoList = "${reviewModel.value!!.imgUrl}[@]"
-                            for (i in it.body()!!.data.indices) {
-                                photoList += "https://be-at-home.s3.amazonaws.com/jjin-re/user/review/${it.body()!!.data[i]}"
-                                if (i < it.body()!!.data.size - 1) {
-                                    photoList += "[@]"
+            when {
+                multipartList.value!!.size > 1 -> {
+                    photoUploadResponse.photoUpload(image = multipartList.value!!,
+                        name = requestBody.value!!,
+                        onResponse = {
+                            if (it.isSuccessful && it.body()!!.code == "200") {
+                                var photoList = "${reviewModel.value!!.imgUrl}[@]"
+                                for (i in it.body()!!.data.indices) {
+                                    photoList += "https://be-at-home.s3.amazonaws.com/jjin-re/user/review/${it.body()!!.data[i]}"
+                                    if (i < it.body()!!.data.size - 1) {
+                                        photoList += "[@]"
+                                    }
                                 }
-                            }
-                            editReviewPhotoList.postValue(photoList)
-                        } else responseMessage.postValue("사진 업로드중 오류가 발생했습니다.")
-                    },
-                    onFailure = {
-                        responseMessage.postValue("사진 업로드중 오류가 발생했습니다.")
-                        it.printStackTrace()
-                    })
-            } else if (multipartList.value!!.size == 1) {
-                photoUploadResponse.photoOneUpload(image = multipartList.value!!,
-                    name = requestBody.value!!,
-                    onResponse = {
-                        if (it.isSuccessful && it.body()!!.code == "200") {
-                            var photoList = reviewModel.value!!.imgUrl
-                            photoList += "[@]https://be-at-home.s3.amazonaws.com/jjin-re/user/review/${it.body()!!.data}"
-                            editReviewPhotoList.postValue(photoList)
-                        } else responseMessage.postValue("사진 업로드중 오류가 발생했습니다.")
-                    },
-                    onFailure = {
-                        responseMessage.postValue("사진 업로드중 오류가 발생했습니다.")
-                        it.printStackTrace()
-                    })
-            } else if (multipartList.value!!.size == 0) {
-                editReviewPhotoList.postValue(reviewModel.value!!.imgUrl)
+                                editReviewPhotoList.postValue(photoList)
+                            } else responseMessage.postValue("사진 업로드중 오류가 발생했습니다.")
+                        },
+                        onFailure = {
+                            responseMessage.postValue("사진 업로드중 오류가 발생했습니다.")
+                            it.printStackTrace()
+                        })
+                }
+                multipartList.value!!.size == 1 -> {
+                    photoUploadResponse.photoOneUpload(image = multipartList.value!!,
+                        name = requestBody.value!!,
+                        onResponse = {
+                            if (it.isSuccessful && it.body()!!.code == "200") {
+                                var photoList = reviewModel.value!!.imgUrl
+                                photoList += "[@]https://be-at-home.s3.amazonaws.com/jjin-re/user/review/${it.body()!!.data}"
+                                editReviewPhotoList.postValue(photoList)
+                            } else responseMessage.postValue("사진 업로드중 오류가 발생했습니다.")
+                        },
+                        onFailure = {
+                            responseMessage.postValue("사진 업로드중 오류가 발생했습니다.")
+                            it.printStackTrace()
+                        })
+                }
+                multipartList.value!!.size == 0 -> {
+                    editReviewPhotoList.postValue(reviewModel.value!!.imgUrl)
+                }
             }
         }
     }

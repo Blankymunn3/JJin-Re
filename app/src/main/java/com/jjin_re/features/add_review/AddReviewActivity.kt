@@ -47,6 +47,7 @@ open class AddReviewActivity: BaseActivity() {
 
     private lateinit var mRevealAnimation: RevealAnimation
     private var isViewVisible = false
+    private var isCancelImageSelect = false
 
     private lateinit var addReviewPhotoRVAdapter: AddReviewPhotoRVAdapter
     private lateinit var requestManager: RequestManager
@@ -72,7 +73,7 @@ open class AddReviewActivity: BaseActivity() {
                     progressON()
                     viewModel.sendFile()
                 } else {
-                    Utils.showSnackBar("내용을 채워주세요.", binding.root, true)
+                    Utils.showSnackBar("내용을 채워주세요.", binding.layoutAddReviewBody, true)
                 }
                 true
             }
@@ -147,6 +148,7 @@ open class AddReviewActivity: BaseActivity() {
                 progressOFF()
                 mRevealAnimation.unRevealActivity()
             } else if (!it.isNullOrEmpty()) {
+                progressOFF()
                 Utils.showSnackBar(viewModel.responseMessage.value!!, binding.root, true)
             }
         })
@@ -255,38 +257,41 @@ open class AddReviewActivity: BaseActivity() {
     fun onCallBottomPicker() {
         val intRange: IntRange = if (!isReloadImagePhoto) 2..10
         else 1..(10 - viewModel.postUriList.value!!.size)
+        if (!isCancelImageSelect) {
+            isCancelImageSelect = true
+            TedImagePicker.with(this@AddReviewActivity)
+                .title("구매내역필수첨부")
+                .mediaType(MediaType.IMAGE)
+                .backButton(R.drawable.ic_arr_back_black)
+                .startMultiImage { uriList ->
+                    if (uriList.size in intRange) {
+                        val postPhoto: ArrayList<Photo> = ArrayList()
+                        viewModel.postUriList.value!!.addAll(uriList)
+                        isViewVisible = true
+                        for (item in viewModel.postUriList.value!!) {
+                            val path = FileUtil.getPath(item, this)
+                            val options = BitmapFactory.Options()
+                            options.inSampleSize = 2
+                            val src = BitmapFactory.decodeFile(path, options)
+                            val orientation = Utils.getOrientationOfImage(path)
+                            val changeOrientationSrc = Utils.getRotatedBitmap(src, orientation)
+                            if (changeOrientationSrc == null)
+                                postPhoto.add(Photo(src, isClickable = false, isDelActive = true))
+                             else
+                                postPhoto.add(Photo(changeOrientationSrc, isClickable = false, isDelActive = true))
 
-        TedImagePicker.with(this@AddReviewActivity)
-            .title("구매내역필수첨부")
-            .mediaType(MediaType.IMAGE)
-            .backButton(R.drawable.ic_arr_back_black)
-            .startMultiImage { uriList ->
-                if (uriList.size in intRange) {
-                    val postPhoto:  ArrayList<Photo> = ArrayList()
-                    viewModel.postUriList.value!!.addAll(uriList)
-                    isViewVisible = true
-                    for (item in viewModel.postUriList.value!!) {
-                        val path = FileUtil.getPath(item, this)
-                        val options = BitmapFactory.Options()
-                        options.inSampleSize = 2
-                        val src = BitmapFactory.decodeFile(path, options)
-                        val orientation = Utils.getOrientationOfImage(path)
-                        val changeOrientationSrc = Utils.getRotatedBitmap(src, orientation)
-                        postPhoto.add(
-                            Photo(
-                                changeOrientationSrc!!,
-                                isClickable = false,
-                                isDelActive = true
-                            )
-                        )
-                        postPhotoList = postPhoto
-                        viewModel.postPhotoList.postValue(postPhoto)
+                            postPhotoList = postPhoto
+                            viewModel.postPhotoList.postValue(postPhoto)
+                        }
+                    } else {
+                        onCallBottomPicker()
+                        Utils.showToast("사진은 2장이상 10장이하로 첨부 가능합니다.", this@AddReviewActivity)
                     }
-                } else {
-                    onCallBottomPicker()
-                    Utils.showToast("사진은 2장이상 10장이하로 첨부 가능합니다.", this@AddReviewActivity)
+
                 }
-            }
+        } else {
+            finish()
+        }
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {

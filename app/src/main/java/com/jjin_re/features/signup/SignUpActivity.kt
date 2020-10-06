@@ -102,6 +102,17 @@ class SignUpActivity : BaseActivity() {
             }
             else -> view.isSelected = !view.isSelected
         }
+        if (binding.ivAgree3.isSelected) {
+            viewModel.userMktPush.postValue(1)
+        } else {
+            viewModel.userMktPush.postValue(0)
+        }
+        if (binding.ivAgree4.isSelected) {
+            viewModel.userEventPush.postValue(1)
+        } else {
+            viewModel.userEventPush.postValue(0)
+        }
+
         viewModel.checkBox.postValue(binding.ivAgree1.isSelected && binding.ivAgree2.isSelected)
     }
 

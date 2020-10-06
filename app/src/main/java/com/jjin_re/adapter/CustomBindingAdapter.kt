@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -36,7 +37,31 @@ object CustomBindingAdapter {
             Glide.with(view.context).load(it)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .override((GLES30.GL_MAX_TEXTURE_SIZE * 0.4).toInt(), (GLES30.GL_MAX_TEXTURE_SIZE * 0.4).toInt())
-                .transition(DrawableTransitionOptions.withCrossFade()).placeholder(R.drawable.ic_profile_default).into(view)
+                .transition(DrawableTransitionOptions.withCrossFade()).placeholder(R.drawable.kakao_default_profile_image).into(view)
+        }
+    }
+
+    @BindingAdapter("app:userProfileSocialType")
+    @JvmStatic
+    fun userProfileSocialType(view: RoundedImageView, type: String?) {
+        type?.let {
+            when (type) {
+                "kakao" -> {
+                    Glide.with(view.context).load(R.drawable.kakaotalk_icon)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .transition(DrawableTransitionOptions.withCrossFade())
+                        .placeholder(null).into(view)
+                }
+                "google" -> {
+                    Glide.with(view.context).load(R.drawable.common_google_signin_btn_icon_dark_normal)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .transition(DrawableTransitionOptions.withCrossFade())
+                        .placeholder(null).into(view)
+                }
+                else -> {
+                    view.isVisible = false
+                }
+            }
         }
     }
 

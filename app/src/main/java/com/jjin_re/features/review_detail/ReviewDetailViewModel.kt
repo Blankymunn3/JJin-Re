@@ -58,6 +58,7 @@ class ReviewDetailViewModel: ViewModel() {
         viewModelScope.launch {
             downloadReviewListRepository.reviewThumbUpAndThumbUp(userID = BaseApplication.userModel.userId,
             uid = uId.value!!,
+            userName = BaseApplication.userModel.nickName,
             onResponse = {
                 it.body()?.let {body ->
                     urlArr.postValue(body.data[0].imgUrl.split("[@]"))
@@ -75,6 +76,7 @@ class ReviewDetailViewModel: ViewModel() {
         viewModelScope.launch {
             downloadReviewListRepository.reviewThumbUpAndThumbDown(userID = BaseApplication.userModel.userId,
                 uid = uId.value!!,
+                userName = BaseApplication.userModel.nickName,
                 onResponse = {
                     it.body()?.let {body ->
                         urlArr.postValue(body.data[0].imgUrl.split("[@]"))

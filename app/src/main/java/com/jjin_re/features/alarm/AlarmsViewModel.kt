@@ -17,6 +17,9 @@ class AlarmsViewModel: ViewModel() {
     val responseMessage = MutableLiveData("")
 
     fun pushChange() {
+        BaseApplication.userModel.eventPush = eventPush.value!!
+        BaseApplication.userModel.mktPush = mktPush.value!!
+        BaseApplication.userModel.reviewPush = reviewPush.value!!
         pushData = PushData(userID = BaseApplication.userModel.userId, reviewPush = reviewPush.value!!, mktPush = mktPush.value!!, eventPush = eventPush.value!!)
         viewModelScope.launch {
             pushChangeRepository.pushChange(

@@ -3,6 +3,7 @@ package com.jjin_re.features.main.fragment.home
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.jjin_re.R
+import com.jjin_re.adapter.AdBannerRVAdapter
 import com.jjin_re.adapter.ReviewItemRVAdapter
 import com.jjin_re.databinding.FragmentHomeBinding
 import com.jjin_re.features.edit_review.EditReviewActivity
@@ -31,7 +33,7 @@ class HomeFragment: Fragment() {
     private val viewModel by GetViewModel(HomeViewModel::class.java)
 
     private lateinit var reviewItemRVAdapter: ReviewItemRVAdapter
-    private lateinit var adBannerRVAdapter: com.jjin_re.adapter.AdBannerRVAdapter
+    private lateinit var adBannerRVAdapter: AdBannerRVAdapter
     private lateinit var requestManager: RequestManager
     private lateinit var linearSnapHelper: LinearSnapHelper
     private lateinit var timerADTask: TimerTask
@@ -89,6 +91,13 @@ class HomeFragment: Fragment() {
             layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
             adapter = reviewItemRVAdapter
         }
+
+        adBannerRVAdapter.setItemClick(object : AdBannerRVAdapter.OnItemClick {
+            override fun itemClick(url: String) {
+                if (url.isNotEmpty()) startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+            }
+
+        })
 
         reviewItemRVAdapter.setItemClick(object : ReviewItemRVAdapter.ItemClick {
             override fun onClick(uId: String) {

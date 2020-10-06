@@ -25,7 +25,9 @@ class SignUpViewModel : ViewModel() {
     val userPwConFirm = MutableLiveData("")
     val userNickName = MutableLiveData("")
     val userPhone = MutableLiveData("")
-
+    val userMktPush = MutableLiveData(0)
+    val userEventPush = MutableLiveData(0)
+    val userReviewPush = MutableLiveData(1)
     val isSaveButtonEnabled = liveData.mediatorLiveData(userID, userPW, userPwConFirm, userNickName, userPhone, idCheck, phoneCheck, checkBox) {
         !userID.value.isNullOrEmpty() && !userPW.value.isNullOrEmpty() && !userPwConFirm.value.isNullOrEmpty() && !userNickName.value.isNullOrEmpty()
         !userPhone.value.isNullOrEmpty() && phoneCheck.value!! && idCheck.value!! && checkBox.value!!
@@ -59,6 +61,9 @@ class SignUpViewModel : ViewModel() {
                 userModel.nickName = userNickName.value!!
                 userModel.userToken = BaseApplication.firebaseToken
                 userModel.type = 0
+                userModel.mktPush = userMktPush.value!!
+                userModel.eventPush = userEventPush.value!!
+                userModel.reviewPush = userReviewPush.value!!
                 signUpRepository.signUpUser(userModel = userModel,
                     onResponse = {
                         if (it.isSuccessful)
